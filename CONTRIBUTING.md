@@ -26,6 +26,20 @@ That's it. All contributions are reviewed before merging.
 - Follow existing naming conventions and patterns in the TypeScript types.
 - If proposing a new resource, look at how existing resources are structured and follow the same approach.
 
+## Code Quality
+
+This project uses [Biome](https://biomejs.dev/) for linting, formatting, and import sorting.
+
+Before opening a PR, run:
+
+```bash
+pnpm run check        # lint + format + import check (what CI runs)
+pnpm run check:fix    # auto-fix all issues
+pnpm run typecheck    # TypeScript type checking
+```
+
+CI runs these checks automatically on every pull request.
+
 ## Questions or Ideas?
 
 If you want to discuss something before opening a PR, reach out at **contact@bind-standard.org**.

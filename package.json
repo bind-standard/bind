@@ -15,7 +15,15 @@
     "clean": "rm -rf dist schemas/resources schemas/supporting schemas/index.json site/resources site/data-types site/public/schema site/.vitepress/dist site/.vitepress/cache",
     "wrangler:config": "ts-node scripts/generate-wrangler-config.ts",
     "deploy": "pnpm run wrangler:config && pnpm exec wrangler deploy",
-    "deploy:delete": "pnpm exec wrangler delete --force"
+    "deploy:delete": "pnpm exec wrangler delete --force",
+    "lint": "biome lint .",
+    "lint:fix": "biome lint --fix .",
+    "format": "biome format --fix .",
+    "format:check": "biome format .",
+    "check": "biome check .",
+    "check:fix": "biome check --fix .",
+    "typecheck": "tsc --noEmit",
+    "check:docs": "pnpm run gen:schema && ts-node scripts/check-schema-docs.ts"
   },
   "keywords": [
     "bind",
@@ -30,6 +38,7 @@
   "type": "commonjs",
   "packageManager": "pnpm@10.24.0",
   "devDependencies": {
+    "@biomejs/biome": "^2.4.0",
     "@types/d3-drag": "^3.0.7",
     "@types/d3-force": "^3.0.10",
     "@types/d3-selection": "^3.0.11",

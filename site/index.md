@@ -3,7 +3,7 @@ layout: home
 hero:
   name: BIND Standard
   text: Business Insurance Normalized Data
-  tagline: An open data interoperability standard for commercial insurance.
+  tagline: An open data interoperability standard for insurance.
   actions:
     - theme: brand
       text: Overview
@@ -17,7 +17,7 @@ hero:
 
 features:
   - title: Resource-Based
-    details: BIND models commercial insurance as a set of discrete, composable resources — Insured, Submission, Quote, Policy, Coverage, Claim, and more.
+    details: BIND models insurance as a set of discrete, composable resources — Insured, Submission, Quote, Policy, Coverage, Claim, and more.
   - title: TypeScript-First
     details: Defined in TypeScript with auto-generated JSON Schemas. Strong typing from source of truth all the way through to validation.
   - title: Proven Patterns

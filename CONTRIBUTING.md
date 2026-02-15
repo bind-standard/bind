@@ -1,6 +1,6 @@
 # Contributing to BIND
 
-BIND is an open standard and we welcome contributions from everyone in the commercial insurance ecosystem — brokers, carriers, MGAs, TPAs, reinsurers, vendors, and developers.
+BIND is an open standard and we welcome contributions from everyone in the insurance ecosystem — brokers, carriers, MGAs, TPAs, reinsurers, vendors, and developers.
 
 ## How to Contribute
 

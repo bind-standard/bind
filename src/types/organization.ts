@@ -13,7 +13,7 @@ import { CarrierAppointment, InsuranceSpecialty } from "./insurance-common";
 import { License } from "./person";
 
 /**
- * An organization involved in the commercial insurance ecosystem.
+ * An organization involved in the insurance ecosystem.
  * This includes carriers, brokers, MGAs, TPAs, reinsurers, and other entities.
  *
  * @example

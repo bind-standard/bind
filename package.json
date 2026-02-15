@@ -1,7 +1,7 @@
 {
   "name": "bind-standard",
   "version": "0.1.0",
-  "description": "BIND (Business Insurance Normalized Data) — An open data interoperability standard for commercial insurance.",
+  "description": "BIND (Business Insurance Normalized Data) — An open data interoperability standard for insurance.",
   "main": "dist/types/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
@@ -17,7 +17,7 @@
   "keywords": [
     "bind",
     "insurance",
-    "commercial-insurance",
+    "insurance",
     "interoperability",
     "schema",
     "standard"

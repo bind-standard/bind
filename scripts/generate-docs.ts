@@ -286,7 +286,7 @@ function generateResourceIndex(resourceSchemas: Map<string, Schema>): string {
   lines.push("# Resources");
   lines.push("");
   lines.push(
-    "BIND resources are the core building blocks of the standard. Each resource represents a distinct concept in commercial insurance."
+    "BIND resources are the core building blocks of the standard. Each resource represents a distinct concept in insurance."
   );
   lines.push("");
 

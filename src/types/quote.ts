@@ -119,7 +119,7 @@ export interface PremiumLineItem {
 
 /**
  * A condition that must be satisfied before a quote can be bound.
- * Common in commercial insurance — e.g., "Provide updated loss runs"
+ * Common in insurance — e.g., "Provide updated loss runs"
  * or "Install fire suppression system within 90 days."
  *
  * @example

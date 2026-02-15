@@ -1,6 +1,6 @@
 # BIND Standard
 
-**BIND** (Business Insurance Normalized Data) is an open data interoperability standard for commercial insurance.
+**BIND** (Business Insurance Normalized Data) is an open data interoperability standard for insurance.
 
 It defines a common set of resource types and data structures that enable brokers, carriers, MGAs, TPAs, reinsurers, and vendors to exchange information in a consistent, machine-readable format.
 
@@ -8,7 +8,7 @@ It defines a common set of resource types and data structures that enable broker
 
 ## The Standard
 
-BIND models commercial insurance as a set of composable resources:
+BIND models insurance as a set of composable resources:
 
 | Category | Resources | Description |
 |----------|-----------|-------------|

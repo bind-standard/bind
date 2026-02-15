@@ -11,7 +11,7 @@ import {
 /**
  * A claim represents an insured's report of a loss or incident
  * that may be covered under their policy. This is the starting point
- * of the claims workflow in commercial insurance.
+ * of the claims workflow in insurance.
  *
  * @example
  * {

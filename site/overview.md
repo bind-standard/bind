@@ -1,18 +1,18 @@
 # BIND Overview
 
-**BIND** (Business Insurance Normalized Data) is a data interoperability standard for commercial insurance. It defines a common set of resource types and data structures that enable systems across the insurance ecosystem to exchange information in a consistent, machine-readable format.
+**BIND** (Business Insurance Normalized Data) is a data interoperability standard for insurance. It defines a common set of resource types and data structures that enable systems across the insurance ecosystem to exchange information in a consistent, machine-readable format.
 
 ## Background
 
-Commercial insurance is a fragmented industry. Brokers, carriers, MGAs, TPAs, and reinsurers each use different systems with different data models. Moving a submission from broker to carrier, binding a quote into a policy, or reporting a claim involves manual data re-entry, PDF parsing, and bespoke integrations.
+Insurance is a fragmented industry. Brokers, carriers, MGAs, TPAs, and reinsurers each use different systems with different data models. Moving a submission from broker to carrier, binding a quote into a policy, or reporting a claim involves manual data re-entry, PDF parsing, and bespoke integrations.
 
-**BIND** defines resources like Insured, Submission, Quote, Policy, Coverage, and Claim — the core concepts that every participant in the commercial insurance ecosystem works with daily.
+**BIND** defines resources like Insured, Submission, Quote, Policy, Coverage, and Claim — the core concepts that every participant in the insurance ecosystem works with daily.
 
 ## Components
 
 ### Resources
 
-Resources are the primary building blocks of BIND. Each resource represents a distinct, identifiable concept in commercial insurance:
+Resources are the primary building blocks of BIND. Each resource represents a distinct, identifiable concept in insurance:
 
 | Category | Resources | Description |
 |----------|-----------|-------------|
@@ -40,7 +40,7 @@ Every resource has a `resourceType` discriminator, an optional `id`, and optiona
 
 ### References
 
-Resources link to each other via **References**. A Policy references an Insured, a Carrier (Organization), and optionally a Broker. A Claim references a Policy. This graph of references models the real relationships in commercial insurance.
+Resources link to each other via **References**. A Policy references an Insured, a Carrier (Organization), and optionally a Broker. A Claim references a Policy. This graph of references models the real relationships in insurance.
 
 ```
 Insured ← Submission → Quote → Policy → Coverage
@@ -64,7 +64,7 @@ Rather than hardcoding every possible classification, BIND uses `CodeableConcept
 
 ## Inspiration
 
-BIND draws inspiration from [HL7 FHIR](https://hl7.org/fhir/) (Fast Healthcare Interoperability Resources), which solved the same fragmentation problem in healthcare by defining common resource types and a composable data model. BIND adapts these proven patterns — resource-based modeling, coded values, references between resources — for the commercial insurance domain.
+BIND draws inspiration from [HL7 FHIR](https://hl7.org/fhir/) (Fast Healthcare Interoperability Resources), which solved the same fragmentation problem in healthcare by defining common resource types and a composable data model. BIND adapts these proven patterns — resource-based modeling, coded values, references between resources — for the insurance domain.
 
 ## The Standard
 

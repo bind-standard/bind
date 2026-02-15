@@ -9,6 +9,9 @@ hero:
       text: Overview
       link: /overview
     - theme: alt
+      text: Concept Explorer
+      link: /explorer
+    - theme: alt
       text: Resources
       link: /resources/
     - theme: alt

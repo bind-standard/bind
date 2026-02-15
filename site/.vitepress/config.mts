@@ -23,6 +23,7 @@ export default defineConfig({
   themeConfig: {
     nav: [
       { text: "Overview", link: "/overview" },
+      { text: "Explorer", link: "/explorer" },
       { text: "Resources", link: "/resources/" },
       { text: "Data Types", link: "/data-types/" },
     ],

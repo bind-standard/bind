@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync } from "fs";
 import { join, basename } from "path";
 
 // ---------------------------------------------------------------------------
@@ -258,14 +258,10 @@ function generateDetailPage(
   }
 
   // JSON Schema link
-  const isResource = resourceCategories.flatMap((c) => c.items).includes(typeName);
-  const schemaRelPath = isResource
-    ? `resources/${typeName}.schema.json`
-    : `supporting/${typeName}.schema.json`;
   lines.push("## JSON Schema");
   lines.push("");
   lines.push(
-    `Full JSON Schema: [\`${schemaRelPath}\`](https://bind-standard.org/schema/${typeName})`
+    `Full JSON Schema: [\`${typeName}.schema.json\`](/schema/${typeName}.schema.json)`
   );
   lines.push("");
 
@@ -450,6 +446,24 @@ function main() {
     JSON.stringify(sidebar, null, 2) + "\n"
   );
   console.log(`  ✓ .vitepress/sidebar.json`);
+
+  // Copy schema files into public dir so they're served as static assets
+  const publicSchemaDir = join(siteDir, "public", "schema");
+  mkdirSync(publicSchemaDir, { recursive: true });
+
+  for (const [name] of resourceSchemas) {
+    copyFileSync(
+      join(resourceSchemasDir, `${name}.schema.json`),
+      join(publicSchemaDir, `${name}.schema.json`)
+    );
+  }
+  for (const [name] of supportingSchemas) {
+    copyFileSync(
+      join(supportingSchemasDir, `${name}.schema.json`),
+      join(publicSchemaDir, `${name}.schema.json`)
+    );
+  }
+  console.log(`  ✓ public/schema/ (${resourceSchemas.size + supportingSchemas.size} files)`);
 
   console.log(`\nGenerated ${successCount} documentation pages.`);
 }

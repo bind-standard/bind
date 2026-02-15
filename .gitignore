@@ -6,6 +6,7 @@ schemas/
 wrangler.jsonc
 site/resources/
 site/data-types/
+site/public/schema/
 site/.vitepress/dist/
 site/.vitepress/cache/
 site/.vitepress/sidebar.json

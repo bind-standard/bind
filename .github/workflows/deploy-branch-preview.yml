@@ -30,21 +30,24 @@ jobs:
       - uses: actions/checkout@v4
         if: steps.pr-check.outputs.skip != 'true'
 
+      - uses: pnpm/action-setup@v4
+        if: steps.pr-check.outputs.skip != 'true'
+
       - uses: actions/setup-node@v4
         if: steps.pr-check.outputs.skip != 'true'
         with:
           node-version: 24
-          cache: npm
+          cache: pnpm
 
-      - run: npm ci
+      - run: pnpm install --frozen-lockfile
         if: steps.pr-check.outputs.skip != 'true'
 
-      - run: npm run docs:build
+      - run: pnpm run docs:build
         if: steps.pr-check.outputs.skip != 'true'
 
       - name: Generate wrangler config
         if: steps.pr-check.outputs.skip != 'true'
-        run: npm run wrangler:config
+        run: pnpm run wrangler:config
         env:
           DEPLOY_CONTEXT: branch-preview
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -52,7 +55,7 @@ jobs:
 
       - name: Deploy to Cloudflare Workers
         if: steps.pr-check.outputs.skip != 'true'
-        run: npx wrangler deploy
+        run: pnpm exec wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

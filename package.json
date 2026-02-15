@@ -8,14 +8,14 @@
     "build": "tsc",
     "gen:schema": "ts-node scripts/generate-schemas.ts",
     "gen:docs": "ts-node scripts/generate-docs.ts",
-    "gen": "npm run gen:schema && npm run gen:docs",
-    "docs:dev": "npm run gen && vitepress dev site",
-    "docs:build": "npm run gen && vitepress build site",
+    "gen": "pnpm run gen:schema && pnpm run gen:docs",
+    "docs:dev": "pnpm run gen && vitepress dev site",
+    "docs:build": "pnpm run gen && vitepress build site",
     "docs:preview": "vitepress preview site",
     "clean": "rm -rf dist schemas/resources schemas/supporting schemas/index.json site/resources site/data-types site/.vitepress/dist site/.vitepress/cache",
     "wrangler:config": "ts-node scripts/generate-wrangler-config.ts",
-    "deploy": "npm run wrangler:config && npx wrangler deploy",
-    "deploy:delete": "npx wrangler delete --force"
+    "deploy": "pnpm run wrangler:config && pnpm exec wrangler deploy",
+    "deploy:delete": "pnpm exec wrangler delete --force"
   },
   "keywords": [
     "bind",
@@ -28,6 +28,7 @@
   "author": "",
   "license": "CC0-1.0",
   "type": "commonjs",
+  "packageManager": "pnpm@10.24.0",
   "devDependencies": {
     "@types/d3-drag": "^3.0.7",
     "@types/d3-force": "^3.0.10",

@@ -3,6 +3,7 @@ dist/
 
 # Generated outputs
 schemas/
+wrangler.jsonc
 site/resources/
 site/data-types/
 site/.vitepress/dist/

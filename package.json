@@ -12,7 +12,10 @@
     "docs:dev": "npm run gen && vitepress dev site",
     "docs:build": "npm run gen && vitepress build site",
     "docs:preview": "vitepress preview site",
-    "clean": "rm -rf dist schemas/resources schemas/supporting schemas/index.json site/resources site/data-types site/.vitepress/dist site/.vitepress/cache"
+    "clean": "rm -rf dist schemas/resources schemas/supporting schemas/index.json site/resources site/data-types site/.vitepress/dist site/.vitepress/cache",
+    "wrangler:config": "ts-node scripts/generate-wrangler-config.ts",
+    "deploy": "npm run wrangler:config && npx wrangler deploy",
+    "deploy:delete": "npx wrangler delete --force"
   },
   "keywords": [
     "bind",
@@ -38,6 +41,7 @@
     "ts-json-schema-generator": "^2.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3",
-    "vitepress": "^1.6.4"
+    "vitepress": "^1.6.4",
+    "wrangler": "^4.14.0"
   }
 }

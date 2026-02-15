@@ -5,7 +5,8 @@ type DeployContext = "production" | "pr-preview" | "branch-preview";
 
 interface WranglerRoute {
   pattern: string;
-  custom_domain: boolean;
+  custom_domain?: boolean;
+  zone_name?: string;
 }
 
 interface WranglerConfig {
@@ -62,7 +63,7 @@ function buildConfig(context: DeployContext): WranglerConfig {
         routes: [
           {
             pattern: `${prNumber}-pr-preview.bind-standard.org`,
-            custom_domain: true,
+            zone_name: "bind-standard.org",
           },
         ],
       };
@@ -82,7 +83,7 @@ function buildConfig(context: DeployContext): WranglerConfig {
         routes: [
           {
             pattern: `${sanitized}-preview.bind-standard.org`,
-            custom_domain: true,
+            zone_name: "bind-standard.org",
           },
         ],
       };

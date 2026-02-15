@@ -1,7 +1,7 @@
 // BIND Standard — Commission
 // Structured commission information replacing commissionPercentage on Policy.
 
-import { Money, CodeableConcept, Reference } from "./base";
+import type { CodeableConcept, Money, Reference } from "./base";
 
 /**
  * A commission arrangement for a policy.
@@ -34,11 +34,7 @@ export interface Commission {
   producer?: Reference;
 
   /** When commission is earned/payable */
-  schedule?:
-    | "on-binding"
-    | "on-effective"
-    | "on-collection"
-    | "installment";
+  schedule?: "on-binding" | "on-effective" | "on-collection" | "installment";
 
   /** Tiered commission schedule based on loss ratio */
   tiers?: CommissionTier[];

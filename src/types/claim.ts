@@ -1,12 +1,4 @@
-import {
-  Resource,
-  Reference,
-  Period,
-  Money,
-  CodeableConcept,
-  Address,
-  Attachment,
-} from "./base";
+import type { Address, Attachment, CodeableConcept, Money, Reference, Resource } from "./base";
 
 /**
  * A claim represents an insured's report of a loss or incident
@@ -107,12 +99,7 @@ export interface Claimant {
   name: string;
 
   /** Role of the claimant in the loss */
-  role:
-    | "insured"
-    | "employee"
-    | "third-party"
-    | "injured-party"
-    | "property-owner";
+  role: "insured" | "employee" | "third-party" | "injured-party" | "property-owner";
 
   /** Claimant's address */
   contact?: Address;

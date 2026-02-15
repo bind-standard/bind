@@ -1,8 +1,8 @@
-import { Resource, Reference, Money, CodeableConcept, Quantity } from "./base";
-import { Deductible } from "./deductible";
-import { Premium } from "./premium";
-import { InsuranceSpecialty, SplitLimitComponent } from "./insurance-common";
-import { ScheduledItem } from "./scheduled-item";
+import type { CodeableConcept, Money, Quantity, Reference, Resource } from "./base";
+import type { Deductible } from "./deductible";
+import type { InsuranceSpecialty, SplitLimitComponent } from "./insurance-common";
+import type { Premium } from "./premium";
+import type { ScheduledItem } from "./scheduled-item";
 
 /**
  * A specific coverage section within a policy.

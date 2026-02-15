@@ -1,8 +1,8 @@
 // BIND Standard — Named Driver
 // A named driver on a personal auto policy.
 
-import { CodeableConcept, Reference } from "./base";
-import { HumanName } from "./datatypes";
+import type { CodeableConcept, Reference } from "./base";
+import type { HumanName } from "./datatypes";
 
 /**
  * A named driver on a personal auto policy.
@@ -41,13 +41,7 @@ export interface NamedDriver {
   licenseState?: string;
 
   /** Current status of the driver's license */
-  licenseStatus?:
-    | "valid"
-    | "suspended"
-    | "revoked"
-    | "expired"
-    | "permit"
-    | "unlicensed";
+  licenseStatus?: "valid" | "suspended" | "revoked" | "expired" | "permit" | "unlicensed";
 
   /**
    * Date the driver was first licensed.

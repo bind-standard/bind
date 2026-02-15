@@ -4,105 +4,92 @@
 // This barrel file re-exports all BIND resource types.
 // Used by the schema generator to discover all types.
 
-// --- Primitives ---
-export {
-  BindId,
-  BindString,
-  BindUri,
-  BindUrl,
-  BindMarkdown,
-  BindBase64Binary,
-  BindDate,
-  BindDateTime,
-  BindInstant,
-  BindTime,
-  BindBoolean,
-  BindInteger,
-  BindPositiveInt,
-  BindDecimal,
-  BindPercentage,
-  BindYear,
-} from "./primitives";
-
 // --- Base types ---
 export {
-  Resource,
-  Meta,
-  Coding,
-  CodeableConcept,
-  Reference,
-  Period,
-  Money,
-  Quantity,
   Address,
-  ContactPoint,
   Attachment,
+  CodeableConcept,
+  Coding,
+  ContactPoint,
   GeoPoint,
   Identifier,
+  Meta,
+  Money,
+  Period,
+  Quantity,
+  Reference,
+  Resource,
 } from "./base";
-
-// --- Complex data types ---
-export {
-  HumanName,
-  GeoRegion,
-  MoneyWithConversion,
-  MultiCurrencyMoney,
-  DateTimePeriod,
-  UcumUnit,
-  InsuranceUnit,
-  UCUM_SYSTEM,
-  BIND_INSURANCE_UNITS_SYSTEM,
-} from "./datatypes";
-
-// --- Insurance domain supporting types ---
-export { FinancialRating } from "./financial-rating";
-export {
-  InsuranceSpecialty,
-  CarrierAppointment,
-  SplitLimitComponent,
-} from "./insurance-common";
-export { Deductible } from "./deductible";
-export {
-  Premium,
-  PremiumBasis,
-  PremiumAdjustment,
-  PremiumInstallment,
-  PremiumAllocation,
-} from "./premium";
-export { Commission, CommissionTier, CommissionSplit } from "./commission";
-export { NamedDriver, DrivingViolation } from "./named-driver";
-export { Lienholder } from "./lienholder";
-export { ScheduledItem } from "./scheduled-item";
-
-// --- Resources ---
-export { Insured } from "./insured";
-
-export { Submission } from "./submission";
-
-export { Quote, PremiumLineItem, Subjectivity } from "./quote";
-
-export { Policy, Endorsement, EndorsementChange } from "./policy";
-
-export {
-  Coverage,
-  CoverageLimit,
-  CoverageExtension,
-  Classification,
-} from "./coverage";
-
 export {
   Claim,
   Claimant,
   ClaimFinancials,
   ClaimPayment,
 } from "./claim";
-
-export { Organization } from "./organization";
-
+export { Commission, CommissionSplit, CommissionTier } from "./commission";
+export {
+  Classification,
+  Coverage,
+  CoverageExtension,
+  CoverageLimit,
+} from "./coverage";
+// --- Complex data types ---
+export {
+  BIND_INSURANCE_UNITS_SYSTEM,
+  DateTimePeriod,
+  GeoRegion,
+  HumanName,
+  InsuranceUnit,
+  MoneyWithConversion,
+  MultiCurrencyMoney,
+  UCUM_SYSTEM,
+  UcumUnit,
+} from "./datatypes";
+export { Deductible } from "./deductible";
+// --- Insurance domain supporting types ---
+export { FinancialRating } from "./financial-rating";
+export {
+  CarrierAppointment,
+  InsuranceSpecialty,
+  SplitLimitComponent,
+} from "./insurance-common";
+// --- Resources ---
+export { Insured } from "./insured";
+export { Lienholder } from "./lienholder";
 export { Location } from "./location";
-
-export { Risk, RiskCharacteristic, AssetValuation } from "./risk";
-
-export { Person, License } from "./person";
-
+export { DrivingViolation, NamedDriver } from "./named-driver";
+export { Organization } from "./organization";
+export { License, Person } from "./person";
 export { PersonRole } from "./person-role";
+export { Endorsement, EndorsementChange, Policy } from "./policy";
+export {
+  Premium,
+  PremiumAdjustment,
+  PremiumAllocation,
+  PremiumBasis,
+  PremiumInstallment,
+} from "./premium";
+// --- Primitives ---
+export {
+  BindBase64Binary,
+  BindBoolean,
+  BindDate,
+  BindDateTime,
+  BindDecimal,
+  BindId,
+  BindInstant,
+  BindInteger,
+  BindMarkdown,
+  BindPercentage,
+  BindPositiveInt,
+  BindString,
+  BindTime,
+  BindUri,
+  BindUrl,
+  BindYear,
+} from "./primitives";
+export { PremiumLineItem, Quote, Subjectivity } from "./quote";
+
+export { AssetValuation, Risk, RiskCharacteristic } from "./risk";
+export { ScheduledItem } from "./scheduled-item";
+export { Submission } from "./submission";

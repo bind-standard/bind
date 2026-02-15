@@ -1,11 +1,4 @@
-import {
-  Resource,
-  Reference,
-  Period,
-  Money,
-  CodeableConcept,
-  Attachment,
-} from "./base";
+import type { Attachment, CodeableConcept, Money, Period, Reference, Resource } from "./base";
 
 /**
  * A submission represents a request for insurance coverage sent from a broker to a carrier.

@@ -1,6 +1,6 @@
 import DefaultTheme from "vitepress/theme";
-import StructureTree from "./StructureTree.vue";
 import ConceptExplorer from "./ConceptExplorer.vue";
+import StructureTree from "./StructureTree.vue";
 
 export default {
   extends: DefaultTheme,

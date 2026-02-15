@@ -1,4 +1,4 @@
-import type { CategoryDef, GraphNode, GraphEdge } from "./types";
+import type { CategoryDef, GraphEdge, GraphNode } from "./types";
 
 export const categories: CategoryDef[] = [
   {

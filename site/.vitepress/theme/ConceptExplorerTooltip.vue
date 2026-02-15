@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { GraphNode, GraphEdge, CategoryDef } from "./concept-explorer/types";
+import type { CategoryDef, GraphEdge, GraphNode } from "./concept-explorer/types";
 
 const props = defineProps<{
   node: GraphNode | null;

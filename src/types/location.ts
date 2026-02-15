@@ -1,13 +1,6 @@
-import {
-  Resource,
-  Reference,
-  Address,
-  Money,
-  Quantity,
-  CodeableConcept,
-} from "./base";
-import { AssetValuation } from "./risk";
-import { Lienholder } from "./lienholder";
+import type { Address, CodeableConcept, Money, Quantity, Reference, Resource } from "./base";
+import type { Lienholder } from "./lienholder";
+import type { AssetValuation } from "./risk";
 
 /**
  * A physical location or premises that is insured or relevant to a policy.
@@ -176,12 +169,7 @@ export interface Location extends Resource {
   hasBasement?: boolean;
 
   /** Basement finish level */
-  basementType?:
-    | "finished"
-    | "unfinished"
-    | "partially-finished"
-    | "walk-out"
-    | "none";
+  basementType?: "finished" | "unfinished" | "partially-finished" | "walk-out" | "none";
 
   /** Whether the property has a swimming pool */
   hasPool?: boolean;

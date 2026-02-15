@@ -1,7 +1,7 @@
 // BIND Standard — Premium
 // Structured premium information replacing inline Money on Coverage.
 
-import { Money, CodeableConcept, Quantity, Reference } from "./base";
+import type { CodeableConcept, Money, Quantity, Reference } from "./base";
 
 /**
  * Comprehensive premium structure for a coverage section.

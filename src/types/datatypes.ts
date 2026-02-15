@@ -1,7 +1,7 @@
 // BIND Standard — Complex Data Types
 // Reusable structures beyond the base types.
 
-import { Money, Period, GeoPoint } from "./base";
+import type { Money, Period } from "./base";
 
 // Re-export GeoPoint so it can be imported from either base or datatypes
 export { GeoPoint } from "./base";
@@ -172,5 +172,4 @@ export type InsuranceUnit =
 export const UCUM_SYSTEM = "http://unitsofmeasure.org";
 
 /** BIND insurance-specific units code system URI */
-export const BIND_INSURANCE_UNITS_SYSTEM =
-  "https://bind-standard.org/CodeSystem/insurance-units";
+export const BIND_INSURANCE_UNITS_SYSTEM = "https://bind-standard.org/CodeSystem/insurance-units";

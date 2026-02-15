@@ -1,13 +1,11 @@
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "vitepress";
-import { readFileSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, resolve } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const sidebar = JSON.parse(
-  readFileSync(resolve(__dirname, "sidebar.json"), "utf-8")
-);
+const sidebar = JSON.parse(readFileSync(resolve(__dirname, "sidebar.json"), "utf-8"));
 
 export default defineConfig({
   title: "BIND Standard",
@@ -29,8 +27,6 @@ export default defineConfig({
     ],
     sidebar,
     search: { provider: "local" },
-    socialLinks: [
-      { icon: "github", link: "https://github.com/bind-standard/bind" },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/bind-standard/bind" }],
   },
 });

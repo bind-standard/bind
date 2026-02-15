@@ -1,8 +1,8 @@
 // BIND Standard — Person Resource
 // Represents an individual in the insurance ecosystem.
 
-import { Resource, Address, ContactPoint, Coding, CodeableConcept } from "./base";
-import { HumanName } from "./datatypes";
+import type { Address, CodeableConcept, Coding, ContactPoint, Resource } from "./base";
+import type { HumanName } from "./datatypes";
 
 /**
  * An individual person involved in the insurance ecosystem.

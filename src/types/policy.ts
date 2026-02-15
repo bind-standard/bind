@@ -1,14 +1,7 @@
-import {
-  Resource,
-  Reference,
-  Period,
-  Money,
-  CodeableConcept,
-  Attachment,
-} from "./base";
-import { Commission } from "./commission";
-import { CoverageLimit, CoverageExtension, Classification } from "./coverage";
-import { Deductible } from "./deductible";
+import type { Attachment, CodeableConcept, Money, Period, Reference, Resource } from "./base";
+import type { Commission } from "./commission";
+import type { Classification, CoverageExtension, CoverageLimit } from "./coverage";
+import type { Deductible } from "./deductible";
 
 /**
  * A bound insurance policy — the central resource in the BIND standard.

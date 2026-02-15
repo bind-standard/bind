@@ -1,7 +1,7 @@
 // BIND Standard — Lienholder
 // Financial interest parties on insured assets (vehicles, dwellings).
 
-import { Address, ContactPoint } from "./base";
+import type { Address, ContactPoint } from "./base";
 
 /**
  * A party with a financial interest in an insured asset.

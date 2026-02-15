@@ -1,12 +1,5 @@
-import {
-  Resource,
-  Address,
-  ContactPoint,
-  CodeableConcept,
-  Reference,
-  Coding,
-} from "./base";
-import { HumanName } from "./datatypes";
+import type { Address, CodeableConcept, Coding, ContactPoint, Reference, Resource } from "./base";
+import type { HumanName } from "./datatypes";
 
 /**
  * An insured entity in the BIND system.
@@ -118,12 +111,7 @@ export interface Insured extends Resource {
   gender?: "male" | "female" | "other" | "unknown";
 
   /** Marital status of the individual insured */
-  maritalStatus?:
-    | "single"
-    | "married"
-    | "divorced"
-    | "widowed"
-    | "domestic-partner";
+  maritalStatus?: "single" | "married" | "divorced" | "widowed" | "domestic-partner";
 
   /** Occupation of the individual insured */
   occupation?: string;

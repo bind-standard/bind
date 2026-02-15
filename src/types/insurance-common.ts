@@ -1,7 +1,7 @@
 // BIND Standard — Common Insurance Types
 // Shared supporting types used across multiple resources.
 
-import { CodeableConcept, Coding, Reference, Period, Money } from "./base";
+import type { CodeableConcept, Coding, Money, Period, Reference } from "./base";
 
 /**
  * A specialty or line-of-business classification.

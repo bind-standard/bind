@@ -1,18 +1,18 @@
 // BIND Standard — Risk Resource
 // Represents an insurable risk item with polymorphic value characteristics.
 
-import {
-  Resource,
-  Reference,
-  Period,
-  Money,
+import type {
+  Address,
   CodeableConcept,
   Coding,
+  Money,
+  Period,
   Quantity,
-  Address,
+  Reference,
+  Resource,
 } from "./base";
-import { NamedDriver } from "./named-driver";
-import { Lienholder } from "./lienholder";
+import type { Lienholder } from "./lienholder";
+import type { NamedDriver } from "./named-driver";
 
 /**
  * An insurable risk item — the most architecturally significant domain resource.

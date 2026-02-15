@@ -1,7 +1,7 @@
 // BIND Standard — Scheduled Item
 // High-value personal property items that exceed standard sublimits.
 
-import { Money, CodeableConcept, Attachment } from "./base";
+import type { Attachment, CodeableConcept, Money } from "./base";
 
 /**
  * A scheduled personal property item.

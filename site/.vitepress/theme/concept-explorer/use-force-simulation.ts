@@ -1,17 +1,17 @@
-import { ref, onUnmounted, type Ref } from "vue";
 import {
-  forceSimulation,
-  forceLink,
-  forceManyBody,
   forceCenter,
   forceCollide,
+  forceLink,
+  forceManyBody,
+  forceSimulation,
   forceX,
   forceY,
   type Simulation,
-  type SimulationNodeDatum,
   type SimulationLinkDatum,
+  type SimulationNodeDatum,
 } from "d3-force";
-import type { GraphNode, GraphEdge, CategoryDef } from "./types";
+import { onUnmounted, type Ref, ref } from "vue";
+import type { CategoryDef, GraphEdge, GraphNode } from "./types";
 
 // Assign an initial x target per category so clusters form spatially
 function categoryX(categoryId: string, width: number): number {
@@ -47,7 +47,10 @@ export function useForceSimulation(
   const edges = ref<GraphEdge[]>([...edgeData]);
   const isStable = ref(false);
 
-  let simulation: Simulation<GraphNode & SimulationNodeDatum, SimulationLinkDatum<GraphNode & SimulationNodeDatum>> | null = null;
+  let simulation: Simulation<
+    GraphNode & SimulationNodeDatum,
+    SimulationLinkDatum<GraphNode & SimulationNodeDatum>
+  > | null = null;
 
   function init() {
     stop();
@@ -61,10 +64,15 @@ export function useForceSimulation(
       n.y = h / 2 + categoryY(n.category, h) + (Math.random() - 0.5) * 60;
     });
 
-    simulation = forceSimulation<GraphNode & SimulationNodeDatum>(nodes.value as (GraphNode & SimulationNodeDatum)[])
+    simulation = forceSimulation<GraphNode & SimulationNodeDatum>(
+      nodes.value as (GraphNode & SimulationNodeDatum)[],
+    )
       .force(
         "link",
-        forceLink<GraphNode & SimulationNodeDatum, SimulationLinkDatum<GraphNode & SimulationNodeDatum>>(edges.value as SimulationLinkDatum<GraphNode & SimulationNodeDatum>[])
+        forceLink<
+          GraphNode & SimulationNodeDatum,
+          SimulationLinkDatum<GraphNode & SimulationNodeDatum>
+        >(edges.value as SimulationLinkDatum<GraphNode & SimulationNodeDatum>[])
           .id((d: GraphNode & SimulationNodeDatum) => d.id)
           .distance(180)
           .strength(0.3),
@@ -74,11 +82,15 @@ export function useForceSimulation(
       .force("collide", forceCollide<GraphNode & SimulationNodeDatum>().radius(70))
       .force(
         "x",
-        forceX<GraphNode & SimulationNodeDatum>((d: GraphNode & SimulationNodeDatum) => w / 2 + categoryX(d.category, w)).strength(0.08),
+        forceX<GraphNode & SimulationNodeDatum>(
+          (d: GraphNode & SimulationNodeDatum) => w / 2 + categoryX(d.category, w),
+        ).strength(0.08),
       )
       .force(
         "y",
-        forceY<GraphNode & SimulationNodeDatum>((d: GraphNode & SimulationNodeDatum) => h / 2 + categoryY(d.category, h)).strength(0.08),
+        forceY<GraphNode & SimulationNodeDatum>(
+          (d: GraphNode & SimulationNodeDatum) => h / 2 + categoryY(d.category, h),
+        ).strength(0.08),
       )
       .alphaDecay(0.02)
       .on("tick", () => {

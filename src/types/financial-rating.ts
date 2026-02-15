@@ -1,7 +1,7 @@
 // BIND Standard — Financial Rating
 // Structured financial strength ratings from rating agencies.
 
-import { Coding } from "./base";
+import type { Coding } from "./base";
 
 /**
  * A financial strength rating from a recognized rating agency.
@@ -25,12 +25,7 @@ export interface FinancialRating {
   rating: string;
 
   /** Rating outlook */
-  outlook?:
-    | "stable"
-    | "positive"
-    | "negative"
-    | "developing"
-    | "under-review";
+  outlook?: "stable" | "positive" | "negative" | "developing" | "under-review";
 
   /** AM Best Financial Size Category (I through XV) */
   financialSizeCategory?: string;

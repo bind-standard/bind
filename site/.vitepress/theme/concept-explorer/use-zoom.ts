@@ -1,6 +1,6 @@
-import { ref, type Ref, onUnmounted } from "vue";
-import { zoom, zoomIdentity, type ZoomBehavior } from "d3-zoom";
 import { select } from "d3-selection";
+import { type ZoomBehavior, zoom, zoomIdentity } from "d3-zoom";
+import { onUnmounted, type Ref, ref } from "vue";
 
 export function useZoom(svgRef: Ref<SVGSVGElement | null>) {
   const transform = ref({ x: 0, y: 0, k: 1 });
@@ -24,26 +24,17 @@ export function useZoom(svgRef: Ref<SVGSVGElement | null>) {
 
   function zoomIn() {
     if (!svgRef.value || !zoomBehavior) return;
-    select(svgRef.value)
-      .transition()
-      .duration(300)
-      .call(zoomBehavior.scaleBy, 1.3);
+    select(svgRef.value).transition().duration(300).call(zoomBehavior.scaleBy, 1.3);
   }
 
   function zoomOut() {
     if (!svgRef.value || !zoomBehavior) return;
-    select(svgRef.value)
-      .transition()
-      .duration(300)
-      .call(zoomBehavior.scaleBy, 0.7);
+    select(svgRef.value).transition().duration(300).call(zoomBehavior.scaleBy, 0.7);
   }
 
   function resetZoom() {
     if (!svgRef.value || !zoomBehavior) return;
-    select(svgRef.value)
-      .transition()
-      .duration(400)
-      .call(zoomBehavior.transform, zoomIdentity);
+    select(svgRef.value).transition().duration(400).call(zoomBehavior.transform, zoomIdentity);
   }
 
   function destroy() {

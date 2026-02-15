@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from "vue";
+import { computed, ref } from "vue";
 
 interface TreeNode {
   name: string;
@@ -49,7 +49,7 @@ function flattenTree(
   nodes: TreeNode[],
   depth: number,
   parentPath: string,
-  parentIsLast: boolean[]
+  parentIsLast: boolean[],
 ): FlatRow[] {
   const rows: FlatRow[] = [];
   nodes.forEach((node, i) => {
@@ -58,7 +58,7 @@ function flattenTree(
     const hasChildren = !!(node.children && node.children.length > 0);
     rows.push({ node, depth, path, hasChildren, isLast, parentIsLast: [...parentIsLast] });
     if (hasChildren && !isCollapsed(path)) {
-      rows.push(...flattenTree(node.children!, depth + 1, path, [...parentIsLast, isLast]));
+      rows.push(...flattenTree(node.children ?? [], depth + 1, path, [...parentIsLast, isLast]));
     }
   });
   return rows;

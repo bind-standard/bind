@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, onUnmounted, nextTick, watch } from "vue";
 import { useData, useRouter } from "vitepress";
-import { categories, nodes as rawNodes, edges as rawEdges } from "./concept-explorer/graph-data";
+import { computed, nextTick, onMounted, onUnmounted, ref, watch } from "vue";
+import { categories, edges as rawEdges, nodes as rawNodes } from "./concept-explorer/graph-data";
+import type { GraphEdge, GraphNode } from "./concept-explorer/types";
 import { useForceSimulation } from "./concept-explorer/use-force-simulation";
 import { useZoom } from "./concept-explorer/use-zoom";
-import ConceptExplorerTooltip from "./ConceptExplorerTooltip.vue";
-import ConceptExplorerControls from "./ConceptExplorerControls.vue";
-import type { GraphNode, GraphEdge } from "./concept-explorer/types";
 
 const { isDark } = useData();
 const router = useRouter();
@@ -44,13 +42,14 @@ const filteredEdges = computed(() => {
 });
 
 // Force simulation
-const { nodes, edges, init: initSim, dragStart, dragged, dragEnd } = useForceSimulation(
-  filteredNodes.value,
-  filteredEdges.value,
-  categories,
-  width,
-  height,
-);
+const {
+  nodes,
+  edges,
+  init: initSim,
+  dragStart,
+  dragged,
+  dragEnd,
+} = useForceSimulation(filteredNodes.value, filteredEdges.value, categories, width, height);
 
 // Re-init simulation when category filter changes
 watch(
@@ -122,8 +121,14 @@ function isNodeHighlighted(nodeId: string): boolean {
   if (!hoveredNode.value && !hoveredEdge.value) return false;
   if (hoveredNode.value) return hoveredNode.value.id === nodeId;
   if (hoveredEdge.value) {
-    const src = typeof hoveredEdge.value.source === "string" ? hoveredEdge.value.source : hoveredEdge.value.source.id;
-    const tgt = typeof hoveredEdge.value.target === "string" ? hoveredEdge.value.target : hoveredEdge.value.target.id;
+    const src =
+      typeof hoveredEdge.value.source === "string"
+        ? hoveredEdge.value.source
+        : hoveredEdge.value.source.id;
+    const tgt =
+      typeof hoveredEdge.value.target === "string"
+        ? hoveredEdge.value.target
+        : hoveredEdge.value.target.id;
     return src === nodeId || tgt === nodeId;
   }
   return false;

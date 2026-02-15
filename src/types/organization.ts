@@ -1,16 +1,15 @@
-import {
-  Resource,
+import type {
   Address,
-  ContactPoint,
   CodeableConcept,
   Coding,
-  Reference,
+  ContactPoint,
   Money,
-  Period,
+  Reference,
+  Resource,
 } from "./base";
-import { FinancialRating } from "./financial-rating";
-import { CarrierAppointment, InsuranceSpecialty } from "./insurance-common";
-import { License } from "./person";
+import type { FinancialRating } from "./financial-rating";
+import type { CarrierAppointment, InsuranceSpecialty } from "./insurance-common";
+import type { License } from "./person";
 
 /**
  * An organization involved in the insurance ecosystem.
@@ -92,11 +91,7 @@ export interface Organization extends Resource {
   entityType?: CodeableConcept;
 
   /** Organizational hierarchy level */
-  organizationLevel?:
-    | "legal-entity"
-    | "operating-company"
-    | "group"
-    | "holding-company";
+  organizationLevel?: "legal-entity" | "operating-company" | "group" | "holding-company";
 
   /** Insurance specialties and lines of business for departments */
   specialties?: InsuranceSpecialty[];

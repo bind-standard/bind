@@ -1,14 +1,7 @@
 // BIND Standard — PersonRole Resource
 // Connects a Person to an Organization in a specific capacity.
 
-import {
-  Resource,
-  Reference,
-  Period,
-  Money,
-  CodeableConcept,
-  ContactPoint,
-} from "./base";
+import type { CodeableConcept, ContactPoint, Money, Period, Reference, Resource } from "./base";
 
 /**
  * The role a Person plays within an Organization.

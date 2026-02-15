@@ -1,5 +1,5 @@
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, copyFileSync } from "fs";
-import { join, basename } from "path";
+import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { basename, join } from "node:path";
 
 // ---------------------------------------------------------------------------
 // Config
@@ -116,7 +116,7 @@ function firstSentence(desc: string | undefined): string {
 function walkProperties(
   props: Record<string, SchemaProperty>,
   requiredFields: string[],
-  definitions: Record<string, SchemaDefinition>
+  definitions: Record<string, SchemaDefinition>,
 ): TreeNode[] {
   const nodes: TreeNode[] = [];
 
@@ -203,7 +203,7 @@ function walkProperties(
 function generateDetailPage(
   typeName: string,
   schema: Schema,
-  fromSection: "resources" | "data-types"
+  _fromSection: "resources" | "data-types",
 ): string {
   const rootRef = schema.$ref ? resolveRefName(schema.$ref) : typeName;
   const definitions = schema.definitions || {};
@@ -242,7 +242,7 @@ function generateDetailPage(
     lines.push(`</script>`);
     lines.push("");
     lines.push(
-      `<StructureTree :data="treeData" rootName="${typeName}" rootDescription="${escapeAttr(rootDesc)}" />`
+      `<StructureTree :data="treeData" rootName="${typeName}" rootDescription="${escapeAttr(rootDesc)}" />`,
     );
     lines.push("");
   }
@@ -260,9 +260,7 @@ function generateDetailPage(
   // JSON Schema link
   lines.push("## JSON Schema");
   lines.push("");
-  lines.push(
-    `Full JSON Schema: [\`${typeName}.schema.json\`](/schema/${typeName}.schema.json)`
-  );
+  lines.push(`Full JSON Schema: [\`${typeName}.schema.json\`](/schema/${typeName}.schema.json)`);
   lines.push("");
 
   return lines.join("\n");
@@ -282,7 +280,7 @@ function generateResourceIndex(resourceSchemas: Map<string, Schema>): string {
   lines.push("# Resources");
   lines.push("");
   lines.push(
-    "BIND resources are the core building blocks of the standard. Each resource represents a distinct concept in insurance."
+    "BIND resources are the core building blocks of the standard. Each resource represents a distinct concept in insurance.",
   );
   lines.push("");
 
@@ -317,16 +315,14 @@ function generateDataTypesIndex(supportingSchemas: Map<string, Schema>): string 
   lines.push("# Data Types");
   lines.push("");
   lines.push(
-    "Data types are reusable structures shared across BIND resources. They represent common concepts like monetary values, coded references, addresses, and time periods."
+    "Data types are reusable structures shared across BIND resources. They represent common concepts like monetary values, coded references, addresses, and time periods.",
   );
   lines.push("");
 
   lines.push("| Data Type | Description |");
   lines.push("|-----------|-------------|");
 
-  const sorted = [...supportingSchemas.entries()].sort((a, b) =>
-    a[0].localeCompare(b[0])
-  );
+  const sorted = [...supportingSchemas.entries()].sort((a, b) => a[0].localeCompare(b[0]));
 
   for (const [name, schema] of sorted) {
     const rootRef = schema.$ref ? resolveRefName(schema.$ref) : name;
@@ -350,12 +346,8 @@ interface SidebarItem {
   items?: SidebarItem[];
 }
 
-function generateSidebarConfig(
-  supportingNames: string[]
-): Record<string, SidebarItem[]> {
-  const resourceSidebar: SidebarItem[] = [
-    { text: "Resource Index", link: "/resources/" },
-  ];
+function generateSidebarConfig(supportingNames: string[]): Record<string, SidebarItem[]> {
+  const resourceSidebar: SidebarItem[] = [{ text: "Resource Index", link: "/resources/" }];
 
   for (const cat of resourceCategories) {
     resourceSidebar.push({
@@ -367,9 +359,7 @@ function generateSidebarConfig(
     });
   }
 
-  const dataTypeSidebar: SidebarItem[] = [
-    { text: "Data Types Index", link: "/data-types/" },
-  ];
+  const dataTypeSidebar: SidebarItem[] = [{ text: "Data Types Index", link: "/data-types/" }];
 
   const sorted = [...supportingNames].sort();
   for (const name of sorted) {
@@ -443,7 +433,7 @@ function main() {
   const sidebar = generateSidebarConfig([...supportingTypeNames]);
   writeFileSync(
     join(siteDir, ".vitepress", "sidebar.json"),
-    JSON.stringify(sidebar, null, 2) + "\n"
+    `${JSON.stringify(sidebar, null, 2)}\n`,
   );
   console.log(`  ✓ .vitepress/sidebar.json`);
 
@@ -454,13 +444,13 @@ function main() {
   for (const [name] of resourceSchemas) {
     copyFileSync(
       join(resourceSchemasDir, `${name}.schema.json`),
-      join(publicSchemaDir, `${name}.schema.json`)
+      join(publicSchemaDir, `${name}.schema.json`),
     );
   }
   for (const [name] of supportingSchemas) {
     copyFileSync(
       join(supportingSchemasDir, `${name}.schema.json`),
-      join(publicSchemaDir, `${name}.schema.json`)
+      join(publicSchemaDir, `${name}.schema.json`),
     );
   }
   console.log(`  ✓ public/schema/ (${resourceSchemas.size + supportingSchemas.size} files)`);

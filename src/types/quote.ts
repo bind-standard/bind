@@ -1,4 +1,4 @@
-import { Resource, Reference, Period, Money, CodeableConcept } from "./base";
+import type { CodeableConcept, Money, Period, Reference, Resource } from "./base";
 
 /**
  * A quote represents a carrier's offer to provide insurance coverage
@@ -34,14 +34,7 @@ export interface Quote extends Resource {
    * - `bound` — Quote has been bound into a policy
    * - `superseded` — Replaced by a newer version of the quote
    */
-  status:
-    | "draft"
-    | "offered"
-    | "accepted"
-    | "rejected"
-    | "expired"
-    | "bound"
-    | "superseded";
+  status: "draft" | "offered" | "accepted" | "rejected" | "expired" | "bound" | "superseded";
 
   /** Reference to the submission that triggered this quote */
   submission?: Reference;

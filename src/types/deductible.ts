@@ -1,7 +1,7 @@
 // BIND Standard — Deductible
 // Structured deductible information replacing inline Money on Coverage.
 
-import { Money, CodeableConcept } from "./base";
+import type { CodeableConcept, Money } from "./base";
 
 /**
  * A structured deductible definition for a coverage section.

@@ -1,5 +1,5 @@
-import { writeFileSync } from "fs";
-import { join } from "path";
+import { writeFileSync } from "node:fs";
+import { join } from "node:path";
 
 type DeployContext = "production" | "pr-preview" | "branch-preview";
 
@@ -53,9 +53,7 @@ function buildConfig(context: DeployContext): WranglerConfig {
     case "pr-preview": {
       const prNumber = process.env.PR_NUMBER;
       if (!prNumber) {
-        throw new Error(
-          "PR_NUMBER environment variable is required for pr-preview context"
-        );
+        throw new Error("PR_NUMBER environment variable is required for pr-preview context");
       }
       return {
         ...base,
@@ -72,9 +70,7 @@ function buildConfig(context: DeployContext): WranglerConfig {
     case "branch-preview": {
       const branchName = process.env.BRANCH_NAME;
       if (!branchName) {
-        throw new Error(
-          "BRANCH_NAME environment variable is required for branch-preview context"
-        );
+        throw new Error("BRANCH_NAME environment variable is required for branch-preview context");
       }
       const sanitized = sanitizeBranchName(branchName);
       return {

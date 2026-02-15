@@ -1,0 +1,14 @@
+name = "bind-standard"
+compatibility_date = "2026-02-14"
+account_id = "ffe7904cc6a301072bfde3c0001293e7"
+
+[assets]
+directory = "./site/.vitepress/dist"
+
+[[routes]]
+pattern = "bind-standard.org"
+custom_domain = true
+
+[[routes]]
+pattern = "www.bind-standard.org"
+custom_domain = true

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+
+# Generated outputs
+schemas/
+site/resources/
+site/data-types/
+site/.vitepress/dist/
+site/.vitepress/cache/
+site/.vitepress/sidebar.json
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

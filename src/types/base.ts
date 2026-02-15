@@ -60,7 +60,7 @@ export interface Meta {
  *
  * @example
  * {
- *   "system": "https://bind-standard.org/CodeSystem/line-of-business",
+ *   "system": "https://bind.codes/line-of-business",
  *   "code": "GL",
  *   "display": "General Liability"
  * }

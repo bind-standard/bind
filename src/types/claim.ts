@@ -59,7 +59,10 @@ export interface Claim extends Resource {
    */
   dateReported?: string;
 
-  /** Type/cause of loss */
+  /**
+   * Type/cause of loss.
+   * @terminology https://bind.codes/loss-cause preferred
+   */
   lossType: CodeableConcept;
 
   /** Narrative description of the loss or incident */
@@ -68,7 +71,10 @@ export interface Claim extends Resource {
   /** Location where the loss occurred */
   lossLocation?: Address;
 
-  /** Reference to the assigned adjuster */
+  /**
+   * Reference to the assigned adjuster.
+   * @deprecated Use `assignments` for richer multi-party claim handling.
+   */
   adjuster?: Reference;
 
   /** Claimant(s) — parties making the claim */
@@ -82,6 +88,36 @@ export interface Claim extends Resource {
 
   /** Supporting documents (photos, police reports, medical records, etc.) */
   documents?: Attachment[];
+
+  /**
+   * Structured cause of loss.
+   * @terminology https://bind.codes/loss-cause preferred
+   */
+  lossCause?: CodeableConcept;
+
+  /**
+   * High-level loss category (property, liability, medical, auto, workers-comp).
+   * @terminology https://bind.codes/loss-kind preferred
+   */
+  lossKind?: CodeableConcept;
+
+  /**
+   * Time of day the loss occurred.
+   * @format time
+   */
+  lossTime?: string;
+
+  /**
+   * Assigned parties with roles — replaces single adjuster field for complex claims.
+   * @see adjuster for backward-compatible single adjuster reference
+   */
+  assignments?: ClaimsAssignment[];
+
+  /** Police, fire, incident, and appraisal reports related to this claim */
+  reports?: ClaimReport[];
+
+  /** Subrogation recovery tracking */
+  subrogation?: SubrogationDetail;
 }
 
 /**
@@ -164,4 +200,39 @@ export interface ClaimPayment {
 
   /** Description of what the payment covers */
   description?: string;
+}
+
+/**
+ * An assignment of a person to handle part of a claim.
+ */
+export interface ClaimsAssignment {
+  person: Reference;
+  role: "adjuster" | "appraiser" | "investigator" | "defense-counsel" | "expert";
+  /** @format date */
+  assignedDate?: string;
+  status?: "active" | "completed" | "reassigned";
+}
+
+/**
+ * A report filed in connection with a claim.
+ */
+export interface ClaimReport {
+  reportType: "police" | "fire" | "incident" | "appraisal";
+  reportNumber?: string;
+  agency?: string;
+  /** @format date */
+  date?: string;
+  attachment?: Attachment;
+}
+
+/**
+ * Subrogation tracking details for recovery from responsible parties.
+ */
+export interface SubrogationDetail {
+  responsibleParty?: string;
+  thirdPartyInsurer?: string;
+  thirdPartyPolicyNumber?: string;
+  potentialRecovery?: Money;
+  actualRecovery?: Money;
+  status?: "identified" | "in-progress" | "recovered" | "abandoned";
 }

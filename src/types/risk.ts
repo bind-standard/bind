@@ -51,6 +51,7 @@ export interface Risk extends Resource {
    * The type of insurable risk.
    * Examples: vehicle, property, marine-cargo, professional-liability,
    * cyber, workers-comp-class, equipment, fine-art, livestock.
+   * @terminology https://bind.codes/risk-type preferred
    */
   riskType: CodeableConcept;
 

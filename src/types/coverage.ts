@@ -1,5 +1,7 @@
 import type { CodeableConcept, Money, Quantity, Reference, Resource } from "./base";
 import type { Deductible } from "./deductible";
+import type { Exclusion, PolicyCondition } from "./exclusion";
+import type { InsuranceForm } from "./form";
 import type { InsuranceSpecialty, SplitLimitComponent } from "./insurance-common";
 import type { Premium } from "./premium";
 import type { ScheduledItem } from "./scheduled-item";
@@ -34,7 +36,10 @@ export interface Coverage extends Resource {
   /** Reference to the parent policy */
   policy: Reference;
 
-  /** Line of business for this coverage (GL, Property, WC, Auto, etc.) */
+  /**
+   * Line of business for this coverage (GL, Property, WC, Auto, etc.)
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   lineOfBusiness: CodeableConcept;
 
   /** Coverage limits */
@@ -66,6 +71,15 @@ export interface Coverage extends Resource {
 
   /** Scheduled personal property items under this coverage */
   scheduledItems?: ScheduledItem[];
+
+  /** Exclusions applicable to this coverage */
+  exclusions?: Exclusion[];
+
+  /** Conditions, warranties, and protective safeguard requirements */
+  conditions?: PolicyCondition[];
+
+  /** Standard form references applicable to this coverage */
+  forms?: InsuranceForm[];
 }
 
 /**

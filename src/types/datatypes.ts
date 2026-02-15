@@ -172,4 +172,4 @@ export type InsuranceUnit =
 export const UCUM_SYSTEM = "http://unitsofmeasure.org";
 
 /** BIND insurance-specific units code system URI */
-export const BIND_INSURANCE_UNITS_SYSTEM = "https://bind-standard.org/CodeSystem/insurance-units";
+export const BIND_INSURANCE_UNITS_SYSTEM = "https://bind.codes/insurance-units";

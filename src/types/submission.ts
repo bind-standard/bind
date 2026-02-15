@@ -1,4 +1,6 @@
 import type { Attachment, CodeableConcept, Money, Period, Reference, Resource } from "./base";
+import type { LossHistory } from "./loss-history";
+import type { QuestionResponse } from "./question-response";
 
 /**
  * A submission represents a request for insurance coverage sent from a broker to a carrier.
@@ -18,7 +20,7 @@ import type { Attachment, CodeableConcept, Money, Period, Reference, Resource } 
  *   "carrier": { "reference": "Organization/carrier-200", "display": "Hartford Financial" },
  *   "requestedEffective": { "start": "2025-07-01", "end": "2026-07-01" },
  *   "linesOfBusiness": [
- *     { "coding": [{ "system": "https://bind-standard.org/CodeSystem/lob", "code": "GL", "display": "General Liability" }] }
+ *     { "coding": [{ "system": "https://bind.codes/lob", "code": "GL", "display": "General Liability" }] }
  *   ],
  *   "submittedDate": "2025-04-15T09:00:00Z"
  * }
@@ -100,4 +102,10 @@ export interface Submission extends Resource {
 
   /** References to Risk resources included in this submission */
   risks?: Reference[];
+
+  /** Historical loss experience for underwriting evaluation */
+  lossHistory?: LossHistory[];
+
+  /** Underwriting question responses */
+  questions?: QuestionResponse[];
 }

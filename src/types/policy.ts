@@ -1,7 +1,10 @@
+import type { AdditionalInterest } from "./additional-interest";
 import type { Attachment, CodeableConcept, Money, Period, Reference, Resource } from "./base";
 import type { Commission } from "./commission";
 import type { Classification, CoverageExtension, CoverageLimit } from "./coverage";
 import type { Deductible } from "./deductible";
+import type { InsuranceForm } from "./form";
+import type { PolicyTransaction } from "./policy-transaction";
 
 /**
  * A bound insurance policy — the central resource in the BIND standard.
@@ -116,6 +119,30 @@ export interface Policy extends Resource {
 
   /** Policy documents (dec page, forms, endorsements) */
   documents?: Attachment[];
+
+  /** Type of policy transaction (new-business, endorsement, renewal, etc.) */
+  transactionType?: "new-business" | "endorsement" | "renewal" | "reinstatement" | "reissue" | "cancellation" | "non-renewal";
+
+  /** Billing method for premium collection */
+  billingMethod?: "direct-bill" | "agency-bill" | "pay-as-you-go" | "premium-finance";
+
+  /** Premium payment frequency */
+  billingFrequency?: "annual" | "semi-annual" | "quarterly" | "monthly";
+
+  /** Preferred language for policy documents (BCP-47 tag, e.g. "en", "fr-CA") */
+  language?: string;
+
+  /** Additional interested parties — mortgagees, loss payees, additional insureds */
+  additionalInterests?: AdditionalInterest[];
+
+  /** Policy lifecycle transaction history */
+  transactions?: PolicyTransaction[];
+
+  /** Standard form references attached to this policy */
+  forms?: InsuranceForm[];
+
+  /** References to Note resources for this policy */
+  notes?: Reference[];
 }
 
 /**

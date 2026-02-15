@@ -1,5 +1,6 @@
 import type { Address, CodeableConcept, Coding, ContactPoint, Reference, Resource } from "./base";
 import type { HumanName } from "./datatypes";
+import type { LossHistory } from "./loss-history";
 
 /**
  * An insured entity in the BIND system.
@@ -118,4 +119,7 @@ export interface Insured extends Resource {
 
   /** Credit score tier for rating purposes */
   creditScoreTier?: CodeableConcept;
+
+  /** Portable loss history across policies for this insured */
+  lossHistory?: LossHistory[];
 }

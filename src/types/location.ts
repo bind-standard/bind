@@ -3,6 +3,18 @@ import type { Lienholder } from "./lienholder";
 import type { AssetValuation } from "./risk";
 
 /**
+ * Detailed sprinkler system information for fire protection rating.
+ */
+export interface SprinklerDetail {
+  /** Type of sprinkler system */
+  type?: "wet" | "dry" | "pre-action" | "deluge";
+  /** Percentage of building covered by sprinklers */
+  coveragePercentage?: number;
+  /** Suppression agent type */
+  agent?: CodeableConcept;
+}
+
+/**
  * A physical location or premises that is insured or relevant to a policy.
  * Used in property, GL, and other location-based coverages.
  * Locations form the basis of a Statement of Values (SOV).
@@ -35,10 +47,16 @@ export interface Location extends Resource {
   /** Physical address of the location */
   address: Address;
 
-  /** Type of occupancy at this location */
+  /**
+   * Type of occupancy at this location.
+   * @terminology https://bind.codes/occupancy-type preferred
+   */
   occupancy?: CodeableConcept;
 
-  /** Construction type (frame, masonry, fire-resistive, etc.) */
+  /**
+   * Construction type (frame, masonry, fire-resistive, etc.)
+   * @terminology https://bind.codes/construction-type preferred
+   */
   constructionType?: CodeableConcept;
 
   /**
@@ -119,7 +137,10 @@ export interface Location extends Resource {
     | "multi-family"
     | "manufactured";
 
-  /** Roof material type */
+  /**
+   * Roof material type.
+   * @terminology https://bind.codes/roof-type preferred
+   */
   roofType?: CodeableConcept;
 
   /**
@@ -205,6 +226,24 @@ export interface Location extends Resource {
 
   /** Whether the dwelling has a backup generator */
   backupGenerator?: boolean;
+
+  /**
+   * Protection class (ISO fire protection rating).
+   * @terminology https://bind.codes/protection-class preferred
+   */
+  protectionClassCode?: CodeableConcept;
+
+  /** Overall physical condition of the property */
+  propertyCondition?: "excellent" | "good" | "fair" | "poor";
+
+  /** Detailed sprinkler system information (supplements the `sprinklered` boolean) */
+  sprinklerDetail?: SprinklerDetail;
+
+  /**
+   * Fire alarm classification.
+   * @terminology https://bind.codes/alarm-type preferred
+   */
+  alarmType?: CodeableConcept;
 
   // --- Underwriting Hazards ---
 

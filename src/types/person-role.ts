@@ -36,7 +36,10 @@ export interface PersonRole extends Resource {
   /** Reference to the organization the person works for/with */
   organization: Reference;
 
-  /** The role the person plays (underwriter, broker, producer, adjuster, actuary, etc.) */
+  /**
+   * The role the person plays (underwriter, broker, producer, adjuster, actuary, etc.)
+   * @terminology https://bind.codes/producer-role preferred
+   */
   role: CodeableConcept;
 
   /** Lines of business or areas of specialization */
@@ -62,4 +65,7 @@ export interface PersonRole extends Resource {
 
   /** Reference to the person this role reports to (PersonRole reference) */
   reportsTo?: Reference;
+
+  /** Subtype of producer role for distribution channel tracking */
+  producerType?: "producing-agent" | "servicing-agent" | "sub-producer" | "wholesaler";
 }

@@ -22,6 +22,14 @@ export {
   Resource,
 } from "./base";
 export {
+  Bundle,
+  BundleEntry,
+  BundleEntryRequest,
+  BundleEntryResponse,
+  BundleEntrySearch,
+  BundleLink,
+} from "./bundle";
+export {
   Certificate,
   CertificateHolder,
   CoverageSummary,

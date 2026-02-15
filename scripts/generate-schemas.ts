@@ -4,6 +4,7 @@ import { type Config, createGenerator } from "ts-json-schema-generator";
 
 // All BIND resource types (top-level resources with resourceType discriminator)
 const resourceTypes = [
+  "Bundle",
   "Insured",
   "Submission",
   "Quote",
@@ -53,6 +54,12 @@ const supportingTypes = [
   "Commission",
   "CommissionTier",
   "CommissionSplit",
+  // Bundle sub-types
+  "BundleLink",
+  "BundleEntry",
+  "BundleEntrySearch",
+  "BundleEntryRequest",
+  "BundleEntryResponse",
   // Resource sub-types
   "Endorsement",
   "EndorsementChange",

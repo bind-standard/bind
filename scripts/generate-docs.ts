@@ -17,6 +17,7 @@ const supportingTypeNames = new Set<string>();
 
 // Resource categories for the index page and sidebar
 const resourceCategories: { name: string; items: string[] }[] = [
+  { name: "Infrastructure", items: ["Bundle"] },
   { name: "Parties", items: ["Insured", "Organization", "Person", "PersonRole"] },
   { name: "Workflow", items: ["Submission", "Quote"] },
   { name: "Contract", items: ["Policy", "Coverage"] },

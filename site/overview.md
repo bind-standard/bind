@@ -66,9 +66,18 @@ Rather than hardcoding every possible classification, BIND uses `CodeableConcept
 
 BIND draws inspiration from [HL7 FHIR](https://hl7.org/fhir/) (Fast Healthcare Interoperability Resources), which solved the same fragmentation problem in healthcare by defining common resource types and a composable data model. BIND adapts these proven patterns — resource-based modeling, coded values, references between resources — for the insurance domain.
 
+## Initiative
+
+BIND is an open initiative aimed at establishing a shared language for insurance data. It was created by [CloudRaker](https://cloudraker.com), a leader in AI-driven productivity solutions, interoperability, and trust for the insurance industry. The initiative is on a path to becoming a separate, not-for-profit entity — ensuring that governance remains neutral, transparent, and community-driven.
+
+**We welcome new members and contributions** from across the ecosystem: insurtechs, insurers, brokers, MGAs, and technology partners who share the vision of seamless data exchange.
+
+CloudRaker will operate the upcoming **Trust Gateway** and **BIND Mobile** app — production infrastructure that brings the standard to life and enables real-world interoperability between participants.
+
 ## The Standard
 
 Browse the full standard:
 
 - **[Resources](/resources/)** — The 8 core resource types
 - **[Data Types](/data-types/)** — The 20 reusable data structures
+

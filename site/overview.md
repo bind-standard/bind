@@ -38,6 +38,14 @@ Every resource has a `resourceType` discriminator, an optional `id`, and optiona
 - **[ContactPoint](/data-types/ContactPoint)** — Phone, email, or other contact info
 - **[Attachment](/data-types/Attachment)** — Document or file reference
 
+### Signed Bundles
+
+A BIND Bundle can be [signed](/signing) using JWS (JSON Web Signature) with ES256. The signature proves who created the bundle and that it hasn't been tampered with. Any system can verify a signed bundle by fetching the signer's public key from the [BIND Directory](/trust) — no prior trust relationship required.
+
+### Trust Directory
+
+The [BIND Directory](/trust) at [bindpki.org](https://bindpki.org) is the public key infrastructure for the ecosystem. It is a git-based registry of insurance participants — their identities, regulatory credentials, and signing keys. It serves as the trust anchor for verifying signed bundles and for trust-tiered [exchange](/exchange).
+
 ### References
 
 Resources link to each other via **References**. A Policy references an Insured, a Carrier (Organization), and optionally a Broker. A Claim references a Policy. This graph of references models the real relationships in insurance.
@@ -78,8 +86,11 @@ CloudRaker will operate the upcoming **Trust Gateway** and **BIND Mobile** app �
 
 Browse the full standard:
 
-- **[Resources](/resources/)** — The 8 core resource types
-- **[Data Types](/data-types/)** — The 20 reusable data structures
+- **[Resources](/resources/)** — The core resource types
+- **[Data Types](/data-types/)** — The reusable data structures
+- **[Signed Bundles](/signing)** — JWS signing specification for BIND Bundles
+- **[Trust Directory](/trust)** — Public key infrastructure at [bindpki.org](https://bindpki.org)
+- **[Exchange](/exchange)** — Encrypted, link-based sharing of BIND Bundles
 - **[Terminology Browser](https://playground.bind-standard.org/terminology/)** — Browse all BIND code sets and their values
 - **[Playground](https://playground.bind-standard.org)** — Interactive tools for exploring and testing BIND
 

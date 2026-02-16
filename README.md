@@ -20,6 +20,12 @@ BIND models insurance as a set of composable resources:
 
 Resources are linked together via references and composed of reusable data types like Money, Period, Address, CodeableConcept, and more.
 
+## Signing & Trust
+
+BIND Bundles can be **signed** using JWS (ES256) to prove authorship and integrity. Signatures are verified against the signer's public key in the **[BIND Directory](https://bindpki.org)** — a git-based PKI registry of insurance participants, their regulatory credentials, and signing keys.
+
+Signed bundles enable trust-tiered exchange, where verified participants get higher limits and longer expiry when sharing data via **[BIND Exchange](https://bind-standard.org/exchange)**.
+
 Browse the full specification at [bind-standard.org](https://bind-standard.org).
 
 ## Stack

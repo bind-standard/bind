@@ -94,23 +94,26 @@ function buildTerminologyMap(): Map<string, string> {
 
     // Match interface blocks and their properties with @terminology annotations
     const interfaceRegex = /export\s+interface\s+(\w+)[\s\S]*?^\}/gm;
-    let ifaceMatch: RegExpExecArray | null;
+    let ifaceMatch: RegExpExecArray | null = interfaceRegex.exec(content);
 
-    while ((ifaceMatch = interfaceRegex.exec(content)) !== null) {
+    while (ifaceMatch !== null) {
       const ifaceName = ifaceMatch[1];
       const ifaceBody = ifaceMatch[0];
 
       // Find JSDoc blocks with @terminology followed by a property name
       const propRegex =
         /@terminology\s+(https:\/\/bind\.codes\/(\w+))\s+\w+[\s\S]*?\n\s+(\w+)\s*[?:].*?;/g;
-      let propMatch: RegExpExecArray | null;
+      let propMatch: RegExpExecArray | null = propRegex.exec(ifaceBody);
 
-      while ((propMatch = propRegex.exec(ifaceBody)) !== null) {
+      while (propMatch !== null) {
         const codeSetId = propMatch[2];
         const propName = propMatch[3];
         const url = `${TERMINOLOGY_PLAYGROUND_BASE}/${codeSetId}`;
         map.set(`${ifaceName}.${propName}`, url);
+        propMatch = propRegex.exec(ifaceBody);
       }
+
+      ifaceMatch = interfaceRegex.exec(content);
     }
   }
 

@@ -30,6 +30,8 @@ features:
     details: Published under CC0 (public domain). No membership fees, no licensing gates. Fork it, extend it, build on it — the standard belongs to the industry.
 ---
 
+<div style="max-width: 1152px; margin: 0 auto; padding: 0 24px;">
+
 ## The Four Layers
 
 BIND addresses every layer of the interoperability problem with a purpose-built architecture.
@@ -75,4 +77,6 @@ Browse [Resources](/resources/) and [Data Types](/data-types/) to see how insura
 Build and validate BIND resources interactively at [playground.bind-standard.org](https://playground.bind-standard.org). Browse 322 code systems and construct Bundles in your browser.
 
 </div>
+</div>
+
 </div>

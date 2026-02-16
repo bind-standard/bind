@@ -1,5 +1,5 @@
 import { copyFileSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { basename, join } from "node:path";
+import { basename, join, resolve } from "node:path";
 
 // ---------------------------------------------------------------------------
 // Config
@@ -71,7 +71,52 @@ interface TreeNode {
   children?: TreeNode[];
   required?: boolean;
   isArray?: boolean;
+  terminologyUrl?: string;
 }
+
+// ---------------------------------------------------------------------------
+// Terminology extraction from TypeScript source
+// ---------------------------------------------------------------------------
+
+const TERMINOLOGY_PLAYGROUND_BASE = "https://playground.bind-standard.org/terminology";
+
+/**
+ * Parse all @terminology annotations from TypeScript source files.
+ * Returns a map: "InterfaceName.propertyName" → playground URL
+ */
+function buildTerminologyMap(): Map<string, string> {
+  const srcDir = resolve(__dirname, "..", "src", "types");
+  const map = new Map<string, string>();
+
+  for (const file of readdirSync(srcDir)) {
+    if (!file.endsWith(".ts")) continue;
+    const content = readFileSync(join(srcDir, file), "utf-8");
+
+    // Match interface blocks and their properties with @terminology annotations
+    const interfaceRegex = /export\s+interface\s+(\w+)[\s\S]*?^\}/gm;
+    let ifaceMatch: RegExpExecArray | null;
+
+    while ((ifaceMatch = interfaceRegex.exec(content)) !== null) {
+      const ifaceName = ifaceMatch[1];
+      const ifaceBody = ifaceMatch[0];
+
+      // Find JSDoc blocks with @terminology followed by a property name
+      const propRegex = /@terminology\s+(https:\/\/bind\.codes\/(\w+))\s+\w+[\s\S]*?\n\s+(\w+)\s*[\?:].*?;/g;
+      let propMatch: RegExpExecArray | null;
+
+      while ((propMatch = propRegex.exec(ifaceBody)) !== null) {
+        const codeSetId = propMatch[2];
+        const propName = propMatch[3];
+        const url = `${TERMINOLOGY_PLAYGROUND_BASE}/${codeSetId}`;
+        map.set(`${ifaceName}.${propName}`, url);
+      }
+    }
+  }
+
+  return map;
+}
+
+const terminologyMap = buildTerminologyMap();
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -118,6 +163,7 @@ function walkProperties(
   props: Record<string, SchemaProperty>,
   requiredFields: string[],
   definitions: Record<string, SchemaDefinition>,
+  parentTypeName?: string,
 ): TreeNode[] {
   const nodes: TreeNode[] = [];
 
@@ -172,13 +218,18 @@ function walkProperties(
 
     if (prop.properties && !prop.$ref) {
       const childRequired = prop.required || [];
-      children = walkProperties(prop.properties, childRequired, definitions);
+      children = walkProperties(prop.properties, childRequired, definitions, parentTypeName);
     }
 
     if (isArray && prop.items && prop.items.properties && !prop.items.$ref) {
       const childRequired = prop.items.required || [];
-      children = walkProperties(prop.items.properties, childRequired, definitions);
+      children = walkProperties(prop.items.properties, childRequired, definitions, parentTypeName);
     }
+
+    // Look up terminology URL
+    const termUrl = parentTypeName
+      ? terminologyMap.get(`${parentTypeName}.${propName}`)
+      : undefined;
 
     const node: TreeNode = {
       name: propName,
@@ -189,6 +240,7 @@ function walkProperties(
       isArray: isArray || undefined,
     };
     if (url) node.typeUrl = url;
+    if (termUrl) node.terminologyUrl = termUrl;
     if (children && children.length > 0) node.children = children;
 
     nodes.push(node);
@@ -233,7 +285,7 @@ function generateDetailPage(
     lines.push("");
 
     const requiredFields = rootDef.required || [];
-    const treeData = walkProperties(rootDef.properties, requiredFields, definitions);
+    const treeData = walkProperties(rootDef.properties, requiredFields, definitions, typeName);
     const rootDesc = rootDef.description ? firstSentence(rootDef.description) : "";
 
     // Emit as a Vue component with JSON props
@@ -244,6 +296,33 @@ function generateDetailPage(
     lines.push("");
     lines.push(
       `<StructureTree :data="treeData" rootName="${typeName}" rootDescription="${escapeAttr(rootDesc)}" />`,
+    );
+    lines.push("");
+  }
+
+  // Terminology Browser section for Coding and CodeableConcept
+  if (typeName === "Coding") {
+    lines.push("## Terminology Browser");
+    lines.push("");
+    lines.push(
+      "The `system` field references a BIND code set URI (e.g. `https://bind.codes/LineOfBusiness`). " +
+        "You can browse all available code sets and their values in the " +
+        "[Terminology Browser](https://playground.bind-standard.org/terminology/).",
+    );
+    lines.push("");
+    lines.push(
+      "To look up a specific code set, navigate to " +
+        "`https://playground.bind-standard.org/terminology/{CodeSetId}` — for example, " +
+        "[LineOfBusiness](https://playground.bind-standard.org/terminology/LineOfBusiness).",
+    );
+    lines.push("");
+  } else if (typeName === "CodeableConcept") {
+    lines.push("## Terminology Browser");
+    lines.push("");
+    lines.push(
+      "Each `Coding` within a CodeableConcept references a code set via its `system` URI. " +
+        "Browse all BIND code sets and their values in the " +
+        "[Terminology Browser](https://playground.bind-standard.org/terminology/).",
     );
     lines.push("");
   }

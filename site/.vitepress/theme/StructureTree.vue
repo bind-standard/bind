@@ -10,6 +10,7 @@ interface TreeNode {
   children?: TreeNode[];
   required?: boolean;
   isArray?: boolean;
+  terminologyUrl?: string;
 }
 
 const props = defineProps<{
@@ -145,7 +146,17 @@ const flatRows = computed(() => flattenTree(props.data, 0, "", []));
             <code v-else-if="row.node.type.includes('|')" class="type-enum" v-html="row.node.type"></code>
             <code v-else class="type-code">{{ row.node.type }}</code>
           </td>
-          <td class="col-desc">{{ row.node.description }}</td>
+          <td class="col-desc">
+            {{ row.node.description }}
+            <a
+              v-if="row.node.terminologyUrl"
+              :href="row.node.terminologyUrl"
+              target="_blank"
+              rel="noopener"
+              class="terminology-link"
+              title="Browse code set in Terminology Browser"
+            >terminology</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -346,5 +357,23 @@ tr:hover td {
   border-radius: 3px;
   color: var(--vp-c-text-2);
   white-space: normal;
+}
+
+/* Terminology badge */
+.terminology-link {
+  display: inline-block;
+  margin-left: 6px;
+  font-size: 11px;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 500;
+  vertical-align: middle;
+}
+.terminology-link:hover {
+  background: var(--vp-c-brand-1);
+  color: white;
 }
 </style>

@@ -66,7 +66,10 @@ export interface Coverage extends Resource {
   /** Insurance specialty / line-of-business detail for this coverage */
   specialty?: InsuranceSpecialty;
 
-  /** Coverage part identifier (e.g., HO: A=Dwelling, B=Other Structures, C=Personal Property, D=Loss of Use, E=Personal Liability, F=Medical Payments) */
+  /**
+   * Coverage part identifier (e.g., HO: A=Dwelling, B=Other Structures, C=Personal Property, D=Loss of Use, E=Personal Liability, F=Medical Payments).
+   * @terminology https://bind.codes/CoveragePart extensible
+   */
   coveragePart?: CodeableConcept;
 
   /** Scheduled personal property items under this coverage */
@@ -94,7 +97,10 @@ export interface Coverage extends Resource {
  * }
  */
 export interface CoverageLimit {
-  /** The type of limit (Each Occurrence, Aggregate, Per Person, etc.) */
+  /**
+   * The type of limit (Each Occurrence, Aggregate, Per Person, etc.)
+   * @terminology https://bind.codes/CoverageLimitType extensible
+   */
   type: CodeableConcept;
 
   /** The limit amount (either amount or splitAmounts should be present) */
@@ -134,7 +140,10 @@ export interface CoverageLimit {
  * Blanket Additional Insured.
  */
 export interface CoverageExtension {
-  /** Name or type of the extension */
+  /**
+   * Name or type of the extension.
+   * @terminology https://bind.codes/CoverageExtensionType extensible
+   */
   type: CodeableConcept;
 
   /** Whether this extension is included or excluded */

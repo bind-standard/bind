@@ -157,7 +157,10 @@ export interface RiskCharacteristic {
  * }
  */
 export interface AssetValuation {
-  /** Valuation method (replacement-cost, actual-cash-value, agreed-value, stated-value, market-value) */
+  /**
+   * Valuation method (replacement-cost, actual-cash-value, agreed-value, stated-value, market-value).
+   * @terminology https://bind.codes/valuation-type extensible
+   */
   type: CodeableConcept;
 
   /** The valuation amount */

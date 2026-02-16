@@ -16,13 +16,22 @@ import type { CodeableConcept, Coding, Money, Period, Reference } from "./base";
  * }
  */
 export interface InsuranceSpecialty {
-  /** Primary line of business (GL, Property, WC, Auto, etc.) */
+  /**
+   * Primary line of business (GL, Property, WC, Auto, etc.)
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   line: CodeableConcept;
 
-  /** Sub-line or coverage part (Products/Completed Ops, Premises, etc.) */
+  /**
+   * Sub-line or coverage part (Products/Completed Ops, Premises, etc.)
+   * @terminology https://bind.codes/line-of-business-sub-code extensible
+   */
   subLine?: CodeableConcept;
 
-  /** Rating bureau or advisory organization (ISO, NCCI, AAIS) */
+  /**
+   * Rating bureau or advisory organization (ISO, NCCI, AAIS).
+   * @terminology https://bind.codes/InsuranceBureau extensible
+   */
   ratingBureau?: Coding;
 
   /** Standard form number (e.g., CG 00 01, CP 00 10) */
@@ -50,13 +59,19 @@ export interface CarrierAppointment {
   /** Current status of the appointment */
   status: "active" | "inactive" | "pending" | "terminated";
 
-  /** Lines of business authorized under this appointment */
+  /**
+   * Lines of business authorized under this appointment.
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   linesOfBusiness?: CodeableConcept[];
 
   /** Period during which this appointment is/was effective */
   effectivePeriod?: Period;
 
-  /** Type of commission arrangement under this appointment */
+  /**
+   * Type of commission arrangement under this appointment.
+   * @terminology https://bind.codes/CommissionType extensible
+   */
   commissionType?: CodeableConcept;
 }
 
@@ -66,7 +81,10 @@ export interface CarrierAppointment {
  * (e.g., auto liability split limits: 100/300/100).
  */
 export interface SplitLimitComponent {
-  /** The category of this split limit component (e.g., Per Person BI, Per Accident BI, PD) */
+  /**
+   * The category of this split limit component (e.g., Per Person BI, Per Accident BI, PD).
+   * @terminology https://bind.codes/SplitLimitCategory extensible
+   */
   category: CodeableConcept;
 
   /** The limit amount for this component */

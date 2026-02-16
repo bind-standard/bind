@@ -31,7 +31,10 @@ export interface NamedDriver {
    */
   dateOfBirth?: string;
 
-  /** The driver's gender */
+  /**
+   * The driver's gender.
+   * @terminology https://bind.codes/gender extensible
+   */
   gender?: "male" | "female" | "other" | "unknown";
 
   /** Driver's license number */
@@ -40,7 +43,10 @@ export interface NamedDriver {
   /** Two-letter state code where the license was issued */
   licenseState?: string;
 
-  /** Current status of the driver's license */
+  /**
+   * Current status of the driver's license.
+   * @terminology https://bind.codes/license-status extensible
+   */
   licenseStatus?: "valid" | "suspended" | "revoked" | "expired" | "permit" | "unlicensed";
 
   /**
@@ -49,13 +55,22 @@ export interface NamedDriver {
    */
   dateFirstLicensed?: string;
 
-  /** How this driver is rated on the policy */
+  /**
+   * How this driver is rated on the policy.
+   * @terminology https://bind.codes/driver-type extensible
+   */
   driverStatus: "rated" | "excluded" | "permitted" | "not-rated";
 
-  /** Relationship of this driver to the named insured (spouse, child, household-member, employee) */
+  /**
+   * Relationship of this driver to the named insured (spouse, child, household-member, employee).
+   * @terminology https://bind.codes/RelationshipToInsured extensible
+   */
   relationshipToInsured?: CodeableConcept;
 
-  /** Primary use of the vehicle by this driver */
+  /**
+   * Primary use of the vehicle by this driver.
+   * @terminology https://bind.codes/vehicle-use extensible
+   */
   primaryUse?: "commute" | "business" | "pleasure" | "farm";
 
   /**
@@ -92,7 +107,10 @@ export interface NamedDriver {
  * }
  */
 export interface DrivingViolation {
-  /** Type of violation (speeding, DUI, at-fault-accident, etc.) */
+  /**
+   * Type of violation (speeding, DUI, at-fault-accident, etc.)
+   * @terminology https://bind.codes/driving-record-code extensible
+   */
   type: CodeableConcept;
 
   /**

@@ -83,7 +83,10 @@ export interface Claim extends Resource {
   /** Financial reserves and payment summary */
   financials?: ClaimFinancials;
 
-  /** Litigation status */
+  /**
+   * Litigation status.
+   * @terminology https://bind.codes/LitigationStatus extensible
+   */
   litigationStatus?: "none" | "threatened" | "filed" | "settled" | "judgment";
 
   /** Supporting documents (photos, police reports, medical records, etc.) */
@@ -134,7 +137,10 @@ export interface Claimant {
   /** Name of the claimant */
   name: string;
 
-  /** Role of the claimant in the loss */
+  /**
+   * Role of the claimant in the loss.
+   * @terminology https://bind.codes/claims-party-role extensible
+   */
   role: "insured" | "employee" | "third-party" | "injured-party" | "property-owner";
 
   /** Claimant's address */
@@ -192,7 +198,10 @@ export interface ClaimPayment {
   /** Amount of the payment */
   amount: Money;
 
-  /** Type of payment */
+  /**
+   * Type of payment.
+   * @terminology https://bind.codes/payment-type extensible
+   */
   paymentType: "indemnity" | "expense" | "medical" | "legal" | "salvage";
 
   /** Payee — who received the payment */
@@ -207,6 +216,7 @@ export interface ClaimPayment {
  */
 export interface ClaimsAssignment {
   person: Reference;
+  /** @terminology https://bind.codes/ClaimsAssignmentRole extensible */
   role: "adjuster" | "appraiser" | "investigator" | "defense-counsel" | "expert";
   /** @format date */
   assignedDate?: string;
@@ -217,6 +227,7 @@ export interface ClaimsAssignment {
  * A report filed in connection with a claim.
  */
 export interface ClaimReport {
+  /** @terminology https://bind.codes/ClaimReportType extensible */
   reportType: "police" | "fire" | "incident" | "appraisal";
   reportNumber?: string;
   agency?: string;
@@ -234,5 +245,6 @@ export interface SubrogationDetail {
   thirdPartyPolicyNumber?: string;
   potentialRecovery?: Money;
   actualRecovery?: Money;
+  /** @terminology https://bind.codes/SubrogationStatus extensible */
   status?: "identified" | "in-progress" | "recovered" | "abandoned";
 }

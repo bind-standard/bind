@@ -19,6 +19,7 @@ export interface CertificateHolder {
  * A summary of coverage included on a certificate.
  */
 export interface CoverageSummary {
+  /** @terminology https://bind.codes/line-of-business preferred */
   lineOfBusiness?: CodeableConcept;
   policy?: Reference;
   carrier?: Reference;

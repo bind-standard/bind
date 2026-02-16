@@ -42,7 +42,10 @@ export interface PersonRole extends Resource {
    */
   role: CodeableConcept;
 
-  /** Lines of business or areas of specialization */
+  /**
+   * Lines of business or areas of specialization.
+   * @terminology https://bind.codes/line-of-business extensible
+   */
   specialty?: CodeableConcept[];
 
   /** Period during which this role assignment is/was effective */
@@ -57,7 +60,10 @@ export interface PersonRole extends Resource {
     maxPremium?: Money;
     /** Maximum limit of insurance this person can bind */
     maxLimit?: Money;
-    /** Lines of business this person can bind */
+    /**
+     * Lines of business this person can bind.
+     * @terminology https://bind.codes/line-of-business preferred
+     */
     linesOfBusiness?: CodeableConcept[];
     /** Geographic territories this person can bind */
     territory?: string[];
@@ -66,6 +72,9 @@ export interface PersonRole extends Resource {
   /** Reference to the person this role reports to (PersonRole reference) */
   reportsTo?: Reference;
 
-  /** Subtype of producer role for distribution channel tracking */
+  /**
+   * Subtype of producer role for distribution channel tracking.
+   * @terminology https://bind.codes/ProducerType extensible
+   */
   producerType?: "producing-agent" | "servicing-agent" | "sub-producer" | "wholesaler";
 }

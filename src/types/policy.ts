@@ -63,7 +63,10 @@ export interface Policy extends Resource {
   /** The period during which this policy provides coverage */
   effectivePeriod: Period;
 
-  /** Lines of business covered by this policy */
+  /**
+   * Lines of business covered by this policy.
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   linesOfBusiness?: CodeableConcept[];
 
   /** Total annual premium */
@@ -96,10 +99,16 @@ export interface Policy extends Resource {
    */
   cancelledDate?: string;
 
-  /** Reason for cancellation, if applicable */
+  /**
+   * Reason for cancellation, if applicable.
+   * @terminology https://bind.codes/cancellation-reason extensible
+   */
   cancellationReason?: CodeableConcept;
 
-  /** Policy form (e.g., occurrence, claims-made) */
+  /**
+   * Policy form (e.g., occurrence, claims-made).
+   * @terminology https://bind.codes/CoverageForm extensible
+   */
   coverageForm?: "occurrence" | "claims-made";
 
   /**
@@ -120,13 +129,22 @@ export interface Policy extends Resource {
   /** Policy documents (dec page, forms, endorsements) */
   documents?: Attachment[];
 
-  /** Type of policy transaction (new-business, endorsement, renewal, etc.) */
+  /**
+   * Type of policy transaction (new-business, endorsement, renewal, etc.)
+   * @terminology https://bind.codes/TransactionType extensible
+   */
   transactionType?: "new-business" | "endorsement" | "renewal" | "reinstatement" | "reissue" | "cancellation" | "non-renewal";
 
-  /** Billing method for premium collection */
+  /**
+   * Billing method for premium collection.
+   * @terminology https://bind.codes/billing-method extensible
+   */
   billingMethod?: "direct-bill" | "agency-bill" | "pay-as-you-go" | "premium-finance";
 
-  /** Premium payment frequency */
+  /**
+   * Premium payment frequency.
+   * @terminology https://bind.codes/BillingFrequency extensible
+   */
   billingFrequency?: "annual" | "semi-annual" | "quarterly" | "monthly";
 
   /** Preferred language for policy documents (BCP-47 tag, e.g. "en", "fr-CA") */
@@ -178,7 +196,10 @@ export interface Endorsement {
   /** Endorsement number or identifier */
   endorsementNumber?: string;
 
-  /** Type of endorsement */
+  /**
+   * Type of endorsement.
+   * @terminology https://bind.codes/EndorsementType extensible
+   */
   type: CodeableConcept;
 
   /**

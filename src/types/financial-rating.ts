@@ -18,13 +18,19 @@ import type { Coding } from "./base";
  * }
  */
 export interface FinancialRating {
-  /** Rating agency (am-best, sp, moodys, fitch) */
+  /**
+   * Rating agency (am-best, sp, moodys, fitch).
+   * @terminology https://bind.codes/FinancialRatingAgency extensible
+   */
   agency: Coding;
 
   /** The rating value (e.g., "A+", "AA-", "Aa3") */
   rating: string;
 
-  /** Rating outlook */
+  /**
+   * Rating outlook.
+   * @terminology https://bind.codes/FinancialRatingOutlook extensible
+   */
   outlook?: "stable" | "positive" | "negative" | "developing" | "under-review";
 
   /** AM Best Financial Size Category (I through XV) */

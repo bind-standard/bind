@@ -18,7 +18,9 @@ export interface InsuranceForm {
   formNumber: string;
   /** @format date */
   editionDate?: string;
+  /** @terminology https://bind.codes/FormType extensible */
   formType?: "bureau" | "proprietary" | "manuscript";
+  /** @terminology https://bind.codes/InsuranceBureau extensible */
   bureau?: CodeableConcept;
   title?: string;
 }

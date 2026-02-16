@@ -18,7 +18,10 @@ import type { CodeableConcept, Money, Reference } from "./base";
  * }
  */
 export interface Commission {
-  /** Type of commission (standard, contingent, override, bonus, profit-sharing) */
+  /**
+   * Type of commission (standard, contingent, override, bonus, profit-sharing).
+   * @terminology https://bind.codes/CommissionType extensible
+   */
   type: CodeableConcept;
 
   /** Commission percentage */
@@ -33,7 +36,10 @@ export interface Commission {
   /** Individual producer who earned the commission (PersonRole reference) */
   producer?: Reference;
 
-  /** When commission is earned/payable */
+  /**
+   * When commission is earned/payable.
+   * @terminology https://bind.codes/CommissionSchedule extensible
+   */
   schedule?: "on-binding" | "on-effective" | "on-collection" | "installment";
 
   /** Tiered commission schedule based on loss ratio */
@@ -73,6 +79,9 @@ export interface CommissionSplit {
   /** Dollar amount allocated to this party */
   amount?: Money;
 
-  /** Role of this party in the split (e.g., house, producer, wholesaler) */
+  /**
+   * Role of this party in the split (e.g., house, producer, wholesaler).
+   * @terminology https://bind.codes/CommissionSplitRole extensible
+   */
   role?: CodeableConcept;
 }

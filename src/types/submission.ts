@@ -63,7 +63,10 @@ export interface Submission extends Resource {
   /** Requested policy effective period */
   requestedEffective?: Period;
 
-  /** Lines of business being requested (GL, Property, Auto, WC, etc.) */
+  /**
+   * Lines of business being requested (GL, Property, Auto, WC, etc.)
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   linesOfBusiness?: CodeableConcept[];
 
   /**
@@ -71,7 +74,10 @@ export interface Submission extends Resource {
    */
   targetPremium?: Money;
 
-  /** Is this a new business submission or a renewal? */
+  /**
+   * Is this a new business submission or a renewal?
+   * @terminology https://bind.codes/SubmissionType extensible
+   */
   submissionType?: "new-business" | "renewal" | "remarket";
 
   /**

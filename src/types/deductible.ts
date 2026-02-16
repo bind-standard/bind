@@ -22,7 +22,10 @@ export interface Deductible {
   /** The deductible amount (required for fixed-amount deductibles, optional for percentage-based) */
   amount?: Money;
 
-  /** How the deductible applies */
+  /**
+   * How the deductible applies.
+   * @terminology https://bind.codes/deductible-type extensible
+   */
   type:
     | "per-occurrence"
     | "per-claim"
@@ -36,7 +39,10 @@ export interface Deductible {
     | "earthquake"
     | "all-perils";
 
-  /** How loss adjustment expenses (ALAE/LAE) interact with the deductible */
+  /**
+   * How loss adjustment expenses (ALAE/LAE) interact with the deductible.
+   * @terminology https://bind.codes/AlaeApplication extensible
+   */
   application?: "loss-only" | "alae-inclusive" | "alae-exclusive";
 
   /**

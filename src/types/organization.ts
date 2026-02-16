@@ -40,6 +40,7 @@ export interface Organization extends Resource {
   /**
    * Type of organization in the insurance ecosystem.
    * Common types: carrier, broker, mga, tpa, reinsurer, surplus-lines-broker
+   * @terminology https://bind.codes/OrganizationType extensible
    */
   type: CodeableConcept;
 
@@ -69,10 +70,16 @@ export interface Organization extends Resource {
   /** States in which this carrier is licensed to write business */
   licensedStates?: string[];
 
-  /** Lines of business this organization writes or handles */
+  /**
+   * Lines of business this organization writes or handles.
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   linesOfBusiness?: CodeableConcept[];
 
-  /** Whether this is an admitted or non-admitted (surplus lines) carrier */
+  /**
+   * Whether this is an admitted or non-admitted (surplus lines) carrier.
+   * @terminology https://bind.codes/AdmittedStatus extensible
+   */
   admittedStatus?: "admitted" | "non-admitted" | "both";
 
   /** Reference to a parent organization */
@@ -87,10 +94,16 @@ export interface Organization extends Resource {
   /** Reference to the broker's E&O policy */
   eAndOPolicy?: Reference;
 
-  /** Business entity type (LLC, Corp, Mutual, Reciprocal, etc.) */
+  /**
+   * Business entity type (LLC, Corp, Mutual, Reciprocal, etc.)
+   * @terminology https://bind.codes/legal-entity extensible
+   */
   entityType?: CodeableConcept;
 
-  /** Organizational hierarchy level */
+  /**
+   * Organizational hierarchy level.
+   * @terminology https://bind.codes/OrganizationLevel extensible
+   */
   organizationLevel?: "legal-entity" | "operating-company" | "group" | "holding-company";
 
   /** Insurance specialties and lines of business for departments */
@@ -108,7 +121,10 @@ export interface Organization extends Resource {
     maxPremium?: Money;
     /** Maximum limit of insurance this organization can bind */
     maxLimit?: Money;
-    /** Lines of business this organization can bind */
+    /**
+     * Lines of business this organization can bind.
+     * @terminology https://bind.codes/line-of-business preferred
+     */
     linesOfBusiness?: CodeableConcept[];
   };
 }

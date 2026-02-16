@@ -61,7 +61,10 @@ export interface PremiumBasis {
   /** Rate per unit of exposure (e.g., 2.45 per $100 of payroll) */
   ratePerUnit?: number;
 
-  /** Description of the rate basis (e.g., "per $100 of payroll", "per $1,000 of revenue") */
+  /**
+   * Description of the rate basis (e.g., "per $100 of payroll", "per $1,000 of revenue").
+   * @terminology https://bind.codes/premium-base extensible
+   */
   rateBasis?: CodeableConcept;
 
   /** The exposure measure used in the calculation */
@@ -83,7 +86,10 @@ export interface PremiumBasis {
  * }
  */
 export interface PremiumAdjustment {
-  /** Type of adjustment (experience-mod, schedule-credit, schedule-debit, IRPM, etc.) */
+  /**
+   * Type of adjustment (experience-mod, schedule-credit, schedule-debit, IRPM, etc.)
+   * @terminology https://bind.codes/PremiumAdjustmentType extensible
+   */
   type: CodeableConcept;
 
   /** Multiplicative factor (e.g., 0.85 = 15% credit, 1.15 = 15% debit) */

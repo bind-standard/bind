@@ -44,7 +44,10 @@ export interface Person extends Resource {
   /** Physical and mailing addresses */
   address?: Address[];
 
-  /** Professional designations and certifications (CPCU, ARM, CIC, AU, AINS) */
+  /**
+   * Professional designations and certifications (CPCU, ARM, CIC, AU, AINS).
+   * @terminology https://bind.codes/ProfessionalDesignation extensible
+   */
   designations?: Coding[];
 
   /** Insurance licenses held by this person */
@@ -77,7 +80,10 @@ export interface License {
   /** License number assigned by the state */
   licenseNumber: string;
 
-  /** Line of authority covered by this license */
+  /**
+   * Line of authority covered by this license.
+   * @terminology https://bind.codes/LineOfAuthority extensible
+   */
   lineOfAuthority?: CodeableConcept;
 
   /** Current status of the license */

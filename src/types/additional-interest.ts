@@ -15,8 +15,10 @@ import type { CodeableConcept, Reference } from "./base";
  */
 export interface AdditionalInterest {
   party: Reference;
+  /** @terminology https://bind.codes/AdditionalInterestRole extensible */
   role: "mortgagee" | "loss-payee" | "additional-insured" | "certificate-holder" | "lienholder";
   rank?: number;
+  /** @terminology https://bind.codes/AdditionalInterestSubtype extensible */
   subtypes?: ("blanket" | "scheduled" | "primary-non-contributory")[];
   loanNumber?: string;
   notificationPreference?: CodeableConcept;

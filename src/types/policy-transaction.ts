@@ -15,6 +15,7 @@ import type { CodeableConcept, Money, Reference } from "./base";
  * }
  */
 export interface PolicyTransaction {
+  /** @terminology https://bind.codes/TransactionType extensible */
   transactionType: "new-business" | "endorsement" | "renewal" | "reinstatement" | "reissue" | "cancellation" | "non-renewal";
   policy: Reference;
   /** @format date */

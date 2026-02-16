@@ -6,7 +6,10 @@ import type { AssetValuation } from "./risk";
  * Detailed sprinkler system information for fire protection rating.
  */
 export interface SprinklerDetail {
-  /** Type of sprinkler system */
+  /**
+   * Type of sprinkler system.
+   * @terminology https://bind.codes/SprinklerType extensible
+   */
   type?: "wet" | "dry" | "pre-action" | "deluge";
   /** Percentage of building covered by sprinklers */
   coveragePercentage?: number;
@@ -127,7 +130,10 @@ export interface Location extends Resource {
 
   // --- Dwelling Characteristics (Personal Lines) ---
 
-  /** Type of dwelling at this location */
+  /**
+   * Type of dwelling at this location.
+   * @terminology https://bind.codes/DwellingType extensible
+   */
   dwellingType?:
     | "single-family"
     | "condo"
@@ -150,10 +156,16 @@ export interface Location extends Resource {
    */
   roofYear?: number;
 
-  /** Roof shape (gable, hip, flat, mansard, gambrel) */
+  /**
+   * Roof shape (gable, hip, flat, mansard, gambrel).
+   * @terminology https://bind.codes/roof-geometry-type extensible
+   */
   roofShape?: CodeableConcept;
 
-  /** Plumbing material type (copper, PVC, PEX, galvanized, polybutylene) */
+  /**
+   * Plumbing material type (copper, PVC, PEX, galvanized, polybutylene).
+   * @terminology https://bind.codes/plumbing-type extensible
+   */
   plumbingType?: CodeableConcept;
 
   /**
@@ -163,7 +175,10 @@ export interface Location extends Resource {
    */
   plumbingYear?: number;
 
-  /** Heating system type (forced-air, radiant, heat-pump, boiler, electric) */
+  /**
+   * Heating system type (forced-air, radiant, heat-pump, boiler, electric).
+   * @terminology https://bind.codes/heating-unit extensible
+   */
   heatingType?: CodeableConcept;
 
   /**
@@ -173,7 +188,10 @@ export interface Location extends Resource {
    */
   heatingYear?: number;
 
-  /** Electrical system type (circuit-breaker, fuse-box + amperage) */
+  /**
+   * Electrical system type (circuit-breaker, fuse-box + amperage).
+   * @terminology https://bind.codes/wiring-type extensible
+   */
   electricalType?: CodeableConcept;
 
   /**
@@ -183,19 +201,28 @@ export interface Location extends Resource {
    */
   electricalYear?: number;
 
-  /** Foundation type (slab, crawl-space, basement, piers, stilts) */
+  /**
+   * Foundation type (slab, crawl-space, basement, piers, stilts).
+   * @terminology https://bind.codes/foundation extensible
+   */
   foundationType?: CodeableConcept;
 
   /** Whether the dwelling has a basement */
   hasBasement?: boolean;
 
-  /** Basement finish level */
+  /**
+   * Basement finish level.
+   * @terminology https://bind.codes/BasementType extensible
+   */
   basementType?: "finished" | "unfinished" | "partially-finished" | "walk-out" | "none";
 
   /** Whether the property has a swimming pool */
   hasPool?: boolean;
 
-  /** Type of swimming pool */
+  /**
+   * Type of swimming pool.
+   * @terminology https://bind.codes/PoolType extensible
+   */
   poolType?: "in-ground" | "above-ground" | "none";
 
   /** Whether the pool area is fenced */
@@ -233,7 +260,10 @@ export interface Location extends Resource {
    */
   protectionClassCode?: CodeableConcept;
 
-  /** Overall physical condition of the property */
+  /**
+   * Overall physical condition of the property.
+   * @terminology https://bind.codes/structure-condition extensible
+   */
   propertyCondition?: "excellent" | "good" | "fair" | "poor";
 
   /** Detailed sprinkler system information (supplements the `sprinklered` boolean) */

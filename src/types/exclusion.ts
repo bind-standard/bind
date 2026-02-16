@@ -13,6 +13,7 @@ import type { CodeableConcept, Period, Reference } from "./base";
  * }
  */
 export interface Exclusion {
+  /** @terminology https://bind.codes/ExclusionCode extensible */
   code: CodeableConcept;
   description?: string;
   effectivePeriod?: Period;
@@ -31,6 +32,9 @@ export interface Exclusion {
  */
 export interface PolicyCondition {
   code: CodeableConcept;
+  /**
+   * @terminology https://bind.codes/PolicyConditionType extensible
+   */
   type: "warranty" | "protective-safeguard" | "condition";
   description?: string;
   effectivePeriod?: Period;

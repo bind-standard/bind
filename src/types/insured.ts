@@ -30,7 +30,10 @@ export interface Insured extends Resource {
   /** Legal name of the insured entity */
   name: string;
 
-  /** Whether the insured is an individual or an organization */
+  /**
+   * Whether the insured is an individual or an organization.
+   * @terminology https://bind.codes/InsuredType extensible
+   */
   type: "individual" | "organization";
 
   /**
@@ -91,7 +94,10 @@ export interface Insured extends Resource {
   /** The entity's website */
   website?: string;
 
-  /** Legal entity type */
+  /**
+   * Legal entity type.
+   * @terminology https://bind.codes/legal-entity extensible
+   */
   entityType?: CodeableConcept;
 
   /** Reference to a parent organization, if this insured is a subsidiary */
@@ -108,10 +114,16 @@ export interface Insured extends Resource {
    */
   dateOfBirth?: string;
 
-  /** Gender of the individual insured */
+  /**
+   * Gender of the individual insured.
+   * @terminology https://bind.codes/gender extensible
+   */
   gender?: "male" | "female" | "other" | "unknown";
 
-  /** Marital status of the individual insured */
+  /**
+   * Marital status of the individual insured.
+   * @terminology https://bind.codes/marital-status extensible
+   */
   maritalStatus?: "single" | "married" | "divorced" | "widowed" | "domestic-partner";
 
   /** Occupation of the individual insured */

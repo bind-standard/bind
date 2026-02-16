@@ -21,7 +21,10 @@ export interface Lienholder {
   /** Name of the lienholder or mortgagee */
   name: string;
 
-  /** Type of financial interest */
+  /**
+   * Type of financial interest.
+   * @terminology https://bind.codes/AdditionalInterestRole extensible
+   */
   type: "mortgagee" | "loss-payee" | "lienholder" | "additional-insured";
 
   /** Loan or mortgage number */

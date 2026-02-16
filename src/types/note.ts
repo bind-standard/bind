@@ -23,6 +23,7 @@ export interface Note extends Resource {
   author?: Reference;
   /** @format date-time */
   created: string;
+  /** @terminology https://bind.codes/NoteCategory extensible */
   category?: CodeableConcept;
   text: string;
   attachments?: Attachment[];

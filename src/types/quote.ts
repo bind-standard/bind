@@ -94,7 +94,10 @@ export interface Quote extends Resource {
  * A premium line item breaking down the cost by coverage line.
  */
 export interface PremiumLineItem {
-  /** Line of business this premium applies to */
+  /**
+   * Line of business this premium applies to.
+   * @terminology https://bind.codes/line-of-business preferred
+   */
   lineOfBusiness: CodeableConcept;
 
   /** Premium amount for this line */

@@ -17,7 +17,10 @@ import type { Attachment, CodeableConcept, Money } from "./base";
  * }
  */
 export interface ScheduledItem {
-  /** Category of the item (jewelry, fine-art, musical-instruments, firearms, etc.) */
+  /**
+   * Category of the item (jewelry, fine-art, musical-instruments, firearms, etc.)
+   * @terminology https://bind.codes/ScheduledItemCategory extensible
+   */
   category: CodeableConcept;
 
   /** Description of the specific item */

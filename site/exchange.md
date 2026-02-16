@@ -12,37 +12,29 @@ BIND Exchange solves this with a simple, secure protocol: the encryption key tra
 
 ## Protocol Flow
 
-```
-Sender                        Exchange Server                     Recipient
-  │                                 │                                 │
-  │  1. Sign Bundle (JWS) [opt]     │                                 │
-  │  2. Encrypt Bundle (JWE)        │                                 │
-  │  3. POST /exchange              │                                 │
-  │     { payload, proof? }         │                                 │
-  │  ─────────────────────────────► │                                 │
-  │                                 │  4. Verify proof → trust tier   │
-  │                                 │  5. Store JWE in R2             │
-  │                                 │  6. Store metadata in KV        │
-  │  7. Receive { url, passcode,    │                                 │
-  │     trusted }                   │                                 │
-  │  ◄───────────────────────────── │                                 │
-  │                                 │                                 │
-  │  8. Send link + passcode        │                                 │
-  │     (email, chat, QR code)      │                                 │
-  │  ─────────────────────────────────────────────────────────────►   │
-  │                                 │                                 │
-  │                                 │  9. POST /exchange/:id/manifest │
-  │                                 │     { recipient, passcode }     │
-  │                                 │  ◄──────────────────────────────│
-  │                                 │                                 │
-  │                                 │  10. Verify passcode            │
-  │                                 │  11. Return { files: [JWE] }    │
-  │                                 │  ──────────────────────────────►│
-  │                                 │                                 │
-  │                                 │     12. Decrypt JWE → JWS      │
-  │                                 │     13. Verify JWS signature    │
-  │                                 │         against issuer JWKS     │
-  │                                 │                                 │
+```mermaid
+sequenceDiagram
+    participant S as Sender
+    participant E as Exchange Server
+    participant R as Recipient
+
+    Note over S: 1. Sign Bundle (JWS) [opt]
+    Note over S: 2. Encrypt Bundle (JWE)
+
+    S->>E: 3. POST /exchange { payload, proof? }
+    Note over E: 4. Verify proof → trust tier
+    Note over E: 5. Store JWE in R2
+    Note over E: 6. Store metadata in KV
+    E-->>S: 7. { url, passcode, trusted }
+
+    S->>R: 8. Send link + passcode (email, chat, QR)
+
+    R->>E: 9. POST /exchange/:id/manifest { passcode }
+    Note over E: 10. Verify passcode
+    E-->>R: 11. { files: [JWE] }
+
+    Note over R: 12. Decrypt JWE → JWS
+    Note over R: 13. Verify JWS signature
 ```
 
 ### Step by step
@@ -70,8 +62,14 @@ Exchange uses two layers of signing. The first layer is the standard [Signed Bun
 
 The signed JWS becomes the plaintext that gets encrypted into the JWE:
 
-```
-BIND Bundle JSON → JWS (ES256) → JWE (dir + A256GCM) → upload
+```mermaid
+graph LR
+    A["BIND Bundle<br>JSON"] --> B["JWS<br>(ES256)"] --> C["JWE<br>(dir + A256GCM)"] --> D["Upload"]
+
+    style A fill:#4a90d9,color:#fff
+    style B fill:#5ba55b,color:#fff
+    style C fill:#d4a843,color:#fff
+    style D fill:#8e44ad,color:#fff
 ```
 
 **Exchange proof (server-verifiable)**

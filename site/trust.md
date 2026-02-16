@@ -6,24 +6,19 @@ When a participant signs a BIND Bundle, anyone can verify the signature by fetch
 
 ## How It Works
 
-```
-Signer                    BIND Directory                    Verifier
-  │                       (bindpki.org)                        │
-  │  Publishes public     ┌──────────────┐                    │
-  │  key via PR ─────────►│  jwks.json   │                    │
-  │                       │  manifest    │                    │
-  │                       │  logos       │                    │
-  │                       └──────┬───────┘                    │
-  │                              │                            │
-  │  Signs bundle with      Serves JWKS at                   │
-  │  private key           /{slug}/.well-known/jwks.json     │
-  │  ─────────────────────────────────────────────────────►   │
-  │                              │                            │
-  │                              │  Fetches JWKS              │
-  │                              │◄───────────────────────────│
-  │                              │                            │
-  │                              │  Verifies signature        │
-  │                              │  against public key        │
+```mermaid
+sequenceDiagram
+    participant S as Signer
+    participant D as BIND Directory<br>(bindpki.org)
+    participant V as Verifier
+
+    S->>D: Publish public key via PR
+    Note over D: Stores jwks.json,<br>manifest, logos
+
+    S->>V: Send signed bundle
+    V->>D: Fetch JWKS from<br>/{slug}/.well-known/jwks.json
+    D-->>V: Public keys
+    Note over V: Verify signature<br>against public key
 ```
 
 ## The Directory

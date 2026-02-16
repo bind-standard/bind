@@ -6,8 +6,12 @@ Signing is optional — unsigned bundles are valid BIND data. But signed bundles
 
 ## Overview
 
-```
-BIND Bundle (JSON) → JWS Compact Serialization (ES256)
+```mermaid
+graph LR
+    A["BIND Bundle<br>(JSON)"] --> B["JWS Compact Serialization<br>(ES256)"]
+
+    style A fill:#4a90d9,color:#fff
+    style B fill:#5ba55b,color:#fff
 ```
 
 The result is a string with three base64url-encoded segments separated by dots:
@@ -48,12 +52,14 @@ RSA and other algorithms are intentionally excluded.
 
 ## Signing a Bundle
 
-```
-1. Serialize the BIND Bundle as JSON (the JWS payload)
-2. Construct the JWS header: { "alg": "ES256", "kid": "<your-key-id>" }
-3. Construct the JWS payload claims: { "iss": "https://bindpki.org/<your-slug>", "iat": <now>, ...bundle }
-4. Sign using your private key (ES256)
-5. Produce JWS compact serialization
+```mermaid
+graph TD
+    A["Serialize Bundle as JSON"] --> B["Construct JWS header<br>alg: ES256, kid: your-key-id"]
+    B --> C["Construct payload claims<br>iss, iat, + bundle"]
+    C --> D["Sign with private key (ES256)"]
+    D --> E["JWS compact serialization"]
+
+    style E fill:#5ba55b,color:#fff
 ```
 
 ### Example (pseudocode)
@@ -76,14 +82,18 @@ The output `jws` is a string like `eyJhbGci...` that can be transmitted, stored,
 
 Verification requires no prior trust relationship — only access to the BIND Directory.
 
-```
-1. Check if the payload is a JWS (three base64url segments separated by dots)
-2. Decode the JWS header → extract `kid`
-3. Decode the JWS payload → extract `iss`
-4. Fetch the signer's JWKS from {iss}/.well-known/jwks.json
-5. Find the key matching `kid` in the JWKS
-6. Verify the ES256 signature
-7. If valid → the bundle is authenticated as originating from `iss`
+```mermaid
+graph TD
+    A["Receive JWS string"] --> B["Decode header → extract kid"]
+    B --> C["Decode payload → extract iss"]
+    C --> D["Fetch JWKS from<br>iss/.well-known/jwks.json"]
+    D --> E["Find key matching kid"]
+    E --> F{"Verify ES256<br>signature"}
+    F -->|Valid| G["Bundle authenticated<br>from iss"]
+    F -->|Invalid| H["Reject — tampered<br>or wrong key"]
+
+    style G fill:#5ba55b,color:#fff
+    style H fill:#c0392b,color:#fff
 ```
 
 ### Example (pseudocode)

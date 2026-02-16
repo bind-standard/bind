@@ -101,7 +101,8 @@ function buildTerminologyMap(): Map<string, string> {
       const ifaceBody = ifaceMatch[0];
 
       // Find JSDoc blocks with @terminology followed by a property name
-      const propRegex = /@terminology\s+(https:\/\/bind\.codes\/(\w+))\s+\w+[\s\S]*?\n\s+(\w+)\s*[\?:].*?;/g;
+      const propRegex =
+        /@terminology\s+(https:\/\/bind\.codes\/(\w+))\s+\w+[\s\S]*?\n\s+(\w+)\s*[?:].*?;/g;
       let propMatch: RegExpExecArray | null;
 
       while ((propMatch = propRegex.exec(ifaceBody)) !== null) {

@@ -9,6 +9,9 @@ hero:
       text: Overview
       link: /overview
     - theme: alt
+      text: Playground
+      link: https://playground.bind-standard.org
+    - theme: alt
       text: Concept Explorer
       link: /explorer
     - theme: alt
@@ -17,6 +20,7 @@ hero:
     - theme: alt
       text: Data Types
       link: /data-types/
+
 
 features:
   - title: Resource-Based

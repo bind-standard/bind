@@ -133,7 +133,14 @@ export interface Policy extends Resource {
    * Type of policy transaction (new-business, endorsement, renewal, etc.)
    * @terminology https://bind.codes/TransactionType extensible
    */
-  transactionType?: "new-business" | "endorsement" | "renewal" | "reinstatement" | "reissue" | "cancellation" | "non-renewal";
+  transactionType?:
+    | "new-business"
+    | "endorsement"
+    | "renewal"
+    | "reinstatement"
+    | "reissue"
+    | "cancellation"
+    | "non-renewal";
 
   /**
    * Billing method for premium collection.

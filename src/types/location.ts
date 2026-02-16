@@ -10,7 +10,7 @@ export interface SprinklerDetail {
    * Type of sprinkler system.
    * @terminology https://bind.codes/SprinklerType extensible
    */
-  type?: "wet" | "dry" | "pre-action" | "deluge";
+  type?: CodeableConcept;
   /** Percentage of building covered by sprinklers */
   coveragePercentage?: number;
   /** Suppression agent type */
@@ -134,14 +134,7 @@ export interface Location extends Resource {
    * Type of dwelling at this location.
    * @terminology https://bind.codes/DwellingType extensible
    */
-  dwellingType?:
-    | "single-family"
-    | "condo"
-    | "townhouse"
-    | "mobile-home"
-    | "duplex"
-    | "multi-family"
-    | "manufactured";
+  dwellingType?: CodeableConcept;
 
   /**
    * Roof material type.
@@ -214,7 +207,7 @@ export interface Location extends Resource {
    * Basement finish level.
    * @terminology https://bind.codes/BasementType extensible
    */
-  basementType?: "finished" | "unfinished" | "partially-finished" | "walk-out" | "none";
+  basementType?: CodeableConcept;
 
   /** Whether the property has a swimming pool */
   hasPool?: boolean;
@@ -223,7 +216,7 @@ export interface Location extends Resource {
    * Type of swimming pool.
    * @terminology https://bind.codes/PoolType extensible
    */
-  poolType?: "in-ground" | "above-ground" | "none";
+  poolType?: CodeableConcept;
 
   /** Whether the pool area is fenced */
   poolFenced?: boolean;
@@ -264,7 +257,7 @@ export interface Location extends Resource {
    * Overall physical condition of the property.
    * @terminology https://bind.codes/StructureCondition extensible
    */
-  propertyCondition?: "excellent" | "good" | "fair" | "poor";
+  propertyCondition?: CodeableConcept;
 
   /** Detailed sprinkler system information (supplements the `sprinklered` boolean) */
   sprinklerDetail?: SprinklerDetail;

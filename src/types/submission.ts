@@ -78,7 +78,7 @@ export interface Submission extends Resource {
    * Is this a new business submission or a renewal?
    * @terminology https://bind.codes/SubmissionType extensible
    */
-  submissionType?: "new-business" | "renewal" | "remarket";
+  submissionType?: CodeableConcept;
 
   /**
    * Date/time the submission was sent to the carrier.

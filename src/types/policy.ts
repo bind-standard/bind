@@ -109,7 +109,7 @@ export interface Policy extends Resource {
    * Policy form (e.g., occurrence, claims-made).
    * @terminology https://bind.codes/CoverageForm extensible
    */
-  coverageForm?: "occurrence" | "claims-made";
+  coverageForm?: CodeableConcept;
 
   /**
    * Retroactive date for claims-made policies.
@@ -133,26 +133,19 @@ export interface Policy extends Resource {
    * Type of policy transaction (new-business, endorsement, renewal, etc.)
    * @terminology https://bind.codes/TransactionType extensible
    */
-  transactionType?:
-    | "new-business"
-    | "endorsement"
-    | "renewal"
-    | "reinstatement"
-    | "reissue"
-    | "cancellation"
-    | "non-renewal";
+  transactionType?: CodeableConcept;
 
   /**
    * Billing method for premium collection.
    * @terminology https://bind.codes/BillingMethod extensible
    */
-  billingMethod?: "direct-bill" | "agency-bill" | "pay-as-you-go" | "premium-finance";
+  billingMethod?: CodeableConcept;
 
   /**
    * Premium payment frequency.
    * @terminology https://bind.codes/BillingFrequency extensible
    */
-  billingFrequency?: "annual" | "semi-annual" | "quarterly" | "monthly";
+  billingFrequency?: CodeableConcept;
 
   /** Preferred language for policy documents (BCP-47 tag, e.g. "en", "fr-CA") */
   language?: string;

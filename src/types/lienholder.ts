@@ -1,7 +1,7 @@
 // BIND Standard — Lienholder
 // Financial interest parties on insured assets (vehicles, dwellings).
 
-import type { Address, ContactPoint } from "./base";
+import type { Address, CodeableConcept, ContactPoint } from "./base";
 
 /**
  * A party with a financial interest in an insured asset.
@@ -25,7 +25,7 @@ export interface Lienholder {
    * Type of financial interest.
    * @terminology https://bind.codes/AdditionalInterestRole extensible
    */
-  type: "mortgagee" | "loss-payee" | "lienholder" | "additional-insured";
+  type: CodeableConcept;
 
   /** Loan or mortgage number */
   loanNumber?: string;

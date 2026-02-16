@@ -35,7 +35,7 @@ export interface NamedDriver {
    * The driver's gender.
    * @terminology https://bind.codes/Gender extensible
    */
-  gender?: "male" | "female" | "other" | "unknown";
+  gender?: CodeableConcept;
 
   /** Driver's license number */
   licenseNumber?: string;
@@ -47,7 +47,7 @@ export interface NamedDriver {
    * Current status of the driver's license.
    * @terminology https://bind.codes/LicenseStatus extensible
    */
-  licenseStatus?: "valid" | "suspended" | "revoked" | "expired" | "permit" | "unlicensed";
+  licenseStatus?: CodeableConcept;
 
   /**
    * Date the driver was first licensed.
@@ -59,7 +59,7 @@ export interface NamedDriver {
    * How this driver is rated on the policy.
    * @terminology https://bind.codes/DriverType extensible
    */
-  driverStatus: "rated" | "excluded" | "permitted" | "not-rated";
+  driverStatus: CodeableConcept;
 
   /**
    * Relationship of this driver to the named insured (spouse, child, household-member, employee).
@@ -71,7 +71,7 @@ export interface NamedDriver {
    * Primary use of the vehicle by this driver.
    * @terminology https://bind.codes/VehicleUse extensible
    */
-  primaryUse?: "commute" | "business" | "pleasure" | "farm";
+  primaryUse?: CodeableConcept;
 
   /**
    * Estimated annual mileage driven.

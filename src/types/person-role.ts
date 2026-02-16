@@ -76,5 +76,5 @@ export interface PersonRole extends Resource {
    * Subtype of producer role for distribution channel tracking.
    * @terminology https://bind.codes/ProducerType extensible
    */
-  producerType?: "producing-agent" | "servicing-agent" | "sub-producer" | "wholesaler";
+  producerType?: CodeableConcept;
 }

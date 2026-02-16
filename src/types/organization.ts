@@ -80,7 +80,7 @@ export interface Organization extends Resource {
    * Whether this is an admitted or non-admitted (surplus lines) carrier.
    * @terminology https://bind.codes/AdmittedStatus extensible
    */
-  admittedStatus?: "admitted" | "non-admitted" | "both";
+  admittedStatus?: CodeableConcept;
 
   /** Reference to a parent organization */
   partOf?: Reference;
@@ -104,7 +104,7 @@ export interface Organization extends Resource {
    * Organizational hierarchy level.
    * @terminology https://bind.codes/OrganizationLevel extensible
    */
-  organizationLevel?: "legal-entity" | "operating-company" | "group" | "holding-company";
+  organizationLevel?: CodeableConcept;
 
   /** Insurance specialties and lines of business for departments */
   specialties?: InsuranceSpecialty[];

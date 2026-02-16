@@ -26,24 +26,13 @@ export interface Deductible {
    * How the deductible applies.
    * @terminology https://bind.codes/DeductibleType extensible
    */
-  type:
-    | "per-occurrence"
-    | "per-claim"
-    | "aggregate"
-    | "annual-aggregate"
-    | "per-employee"
-    | "per-project"
-    | "percentage"
-    | "hurricane"
-    | "wind-hail"
-    | "earthquake"
-    | "all-perils";
+  type: CodeableConcept;
 
   /**
    * How loss adjustment expenses (ALAE/LAE) interact with the deductible.
    * @terminology https://bind.codes/AlaeApplication extensible
    */
-  application?: "loss-only" | "alae-inclusive" | "alae-exclusive";
+  application?: CodeableConcept;
 
   /**
    * Whether this is a Self-Insured Retention (SIR) rather than a traditional deductible.

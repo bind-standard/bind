@@ -35,7 +35,7 @@ export interface PolicyCondition {
   /**
    * @terminology https://bind.codes/PolicyConditionType extensible
    */
-  type: "warranty" | "protective-safeguard" | "condition";
+  type: CodeableConcept;
   description?: string;
   effectivePeriod?: Period;
 }

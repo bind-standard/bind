@@ -1,7 +1,7 @@
 // BIND Standard — Financial Rating
 // Structured financial strength ratings from rating agencies.
 
-import type { Coding } from "./base";
+import type { CodeableConcept, Coding } from "./base";
 
 /**
  * A financial strength rating from a recognized rating agency.
@@ -31,7 +31,7 @@ export interface FinancialRating {
    * Rating outlook.
    * @terminology https://bind.codes/FinancialRatingOutlook extensible
    */
-  outlook?: "stable" | "positive" | "negative" | "developing" | "under-review";
+  outlook?: CodeableConcept;
 
   /** AM Best Financial Size Category (I through XV) */
   financialSizeCategory?: string;

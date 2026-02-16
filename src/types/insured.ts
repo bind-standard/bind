@@ -34,7 +34,7 @@ export interface Insured extends Resource {
    * Whether the insured is an individual or an organization.
    * @terminology https://bind.codes/InsuredType extensible
    */
-  type: "individual" | "organization";
+  type: CodeableConcept;
 
   /**
    * Doing-business-as name, if different from the legal name.
@@ -118,13 +118,13 @@ export interface Insured extends Resource {
    * Gender of the individual insured.
    * @terminology https://bind.codes/Gender extensible
    */
-  gender?: "male" | "female" | "other" | "unknown";
+  gender?: CodeableConcept;
 
   /**
    * Marital status of the individual insured.
    * @terminology https://bind.codes/MaritalStatus extensible
    */
-  maritalStatus?: "single" | "married" | "divorced" | "widowed" | "domestic-partner";
+  maritalStatus?: CodeableConcept;
 
   /** Occupation of the individual insured */
   occupation?: string;

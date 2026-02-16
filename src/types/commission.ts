@@ -40,7 +40,7 @@ export interface Commission {
    * When commission is earned/payable.
    * @terminology https://bind.codes/CommissionSchedule extensible
    */
-  schedule?: "on-binding" | "on-effective" | "on-collection" | "installment";
+  schedule?: CodeableConcept;
 
   /** Tiered commission schedule based on loss ratio */
   tiers?: CommissionTier[];

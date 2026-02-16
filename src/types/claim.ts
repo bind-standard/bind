@@ -87,7 +87,7 @@ export interface Claim extends Resource {
    * Litigation status.
    * @terminology https://bind.codes/LitigationStatus extensible
    */
-  litigationStatus?: "none" | "threatened" | "filed" | "settled" | "judgment";
+  litigationStatus?: CodeableConcept;
 
   /** Supporting documents (photos, police reports, medical records, etc.) */
   documents?: Attachment[];
@@ -141,7 +141,7 @@ export interface Claimant {
    * Role of the claimant in the loss.
    * @terminology https://bind.codes/ClaimsPartyRole extensible
    */
-  role: "insured" | "employee" | "third-party" | "injured-party" | "property-owner";
+  role: CodeableConcept;
 
   /** Claimant's address */
   contact?: Address;
@@ -202,7 +202,7 @@ export interface ClaimPayment {
    * Type of payment.
    * @terminology https://bind.codes/PaymentType extensible
    */
-  paymentType: "indemnity" | "expense" | "medical" | "legal" | "salvage";
+  paymentType: CodeableConcept;
 
   /** Payee — who received the payment */
   payee?: string;
@@ -217,7 +217,7 @@ export interface ClaimPayment {
 export interface ClaimsAssignment {
   person: Reference;
   /** @terminology https://bind.codes/ClaimsAssignmentRole extensible */
-  role: "adjuster" | "appraiser" | "investigator" | "defense-counsel" | "expert";
+  role: CodeableConcept;
   /** @format date */
   assignedDate?: string;
   status?: "active" | "completed" | "reassigned";
@@ -228,7 +228,7 @@ export interface ClaimsAssignment {
  */
 export interface ClaimReport {
   /** @terminology https://bind.codes/ClaimReportType extensible */
-  reportType: "police" | "fire" | "incident" | "appraisal";
+  reportType: CodeableConcept;
   reportNumber?: string;
   agency?: string;
   /** @format date */
@@ -246,5 +246,5 @@ export interface SubrogationDetail {
   potentialRecovery?: Money;
   actualRecovery?: Money;
   /** @terminology https://bind.codes/SubrogationStatus extensible */
-  status?: "identified" | "in-progress" | "recovered" | "abandoned";
+  status?: CodeableConcept;
 }

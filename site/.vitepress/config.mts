@@ -24,6 +24,7 @@ export default defineConfig({
       { text: "Explorer", link: "/explorer" },
       { text: "Resources", link: "/resources/" },
       { text: "Data Types", link: "/data-types/" },
+      { text: "Playground", link: "https://playground.bind-standard.org" },
     ],
     sidebar,
     search: { provider: "local" },

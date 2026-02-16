@@ -60,7 +60,7 @@ The canonical definitions live in TypeScript interfaces. JSON Schemas are auto-g
 
 ### Extensibility via CodeableConcept
 
-Rather than hardcoding every possible classification, BIND uses `CodeableConcept` — a pattern that pairs machine-readable codes with human-readable text. This allows different organizations to use their own code systems while maintaining interoperability.
+Rather than hardcoding every possible classification, BIND uses `CodeableConcept` — a pattern that pairs machine-readable codes with human-readable text. This allows different organizations to use their own code systems while maintaining interoperability. Browse all available code sets in the [Terminology Browser](https://playground.bind-standard.org/terminology/).
 
 ## Inspiration
 
@@ -80,4 +80,6 @@ Browse the full standard:
 
 - **[Resources](/resources/)** — The 8 core resource types
 - **[Data Types](/data-types/)** — The 20 reusable data structures
+- **[Terminology Browser](https://playground.bind-standard.org/terminology/)** — Browse all BIND code sets and their values
+- **[Playground](https://playground.bind-standard.org)** — Interactive tools for exploring and testing BIND
 

@@ -10,7 +10,7 @@ Signing is optional — unsigned bundles are valid BIND data. But signed bundles
 BIND Bundle (JSON) → JWS Compact Serialization (ES256)
 ```
 
-The result is a string with five base64url-encoded segments separated by dots:
+The result is a string with three base64url-encoded segments separated by dots:
 
 ```
 <header>.<payload>.<signature>
@@ -20,7 +20,7 @@ Any system that receives a signed bundle can verify it by fetching the signer's 
 
 ## Signing Specification
 
-BIND follows the [SMART Health Card](https://spec.smarthealth.cards/) signing model: **ES256** (ECDSA with P-256 and SHA-256) with JWKS-based key discovery.
+Signed bundles use **ES256** (ECDSA with P-256 and SHA-256) with JWKS-based key discovery via the [BIND Directory](/trust).
 
 ### JWS Header
 
@@ -33,7 +33,7 @@ BIND follows the [SMART Health Card](https://spec.smarthealth.cards/) signing mo
 
 | Claim | Type | Description |
 |-------|------|-------------|
-| `iss` | string | Signer identifier — the participant slug registered in the [BIND Directory](https://bindpki.org) |
+| `iss` | string | Issuer URL — the signer's base URL in the BIND Directory (e.g. `https://bindpki.org/egr`). JWKS is discovered at `{iss}/.well-known/jwks.json`. |
 | `iat` | number | Issued-at time (seconds since Unix epoch) |
 | `nbf` | number? | Not before — bundle should not be accepted before this time |
 | `exp` | number? | Expiration — bundle should not be accepted after this time |
@@ -42,16 +42,16 @@ The JWS payload body is the BIND Bundle JSON. Together with the claims, a signed
 
 ### Algorithm
 
-Only **ES256** is supported. This matches the SMART Health Card specification and the key types published in the BIND Directory (EC P-256).
+Only **ES256** is supported. This keeps the ecosystem uniform and verifiable — all participants in the BIND Directory publish EC P-256 keys.
 
-RSA and other algorithms are intentionally excluded to keep the ecosystem uniform and verifiable. All participants in the BIND Directory publish EC P-256 keys.
+RSA and other algorithms are intentionally excluded.
 
 ## Signing a Bundle
 
 ```
 1. Serialize the BIND Bundle as JSON (the JWS payload)
 2. Construct the JWS header: { "alg": "ES256", "kid": "<your-key-id>" }
-3. Construct the JWS payload claims: { "iss": "<your-slug>", "iat": <now>, ...bundle }
+3. Construct the JWS payload claims: { "iss": "https://bindpki.org/<your-slug>", "iat": <now>, ...bundle }
 4. Sign using your private key (ES256)
 5. Produce JWS compact serialization
 ```
@@ -65,7 +65,7 @@ const bundle = { resourceType: "Bundle", type: "document", entry: [...] };
 
 const jws = await new SignJWT(bundle)
   .setProtectedHeader({ alg: "ES256", kid: "<your-key-id>" })
-  .setIssuer("<your-slug>")
+  .setIssuer("https://bindpki.org/<your-slug>")
   .setIssuedAt()
   .sign(privateKey);
 ```
@@ -80,7 +80,7 @@ Verification requires no prior trust relationship — only access to the BIND Di
 1. Check if the payload is a JWS (three base64url segments separated by dots)
 2. Decode the JWS header → extract `kid`
 3. Decode the JWS payload → extract `iss`
-4. Fetch the signer's JWKS from https://bindpki.org/{iss}/.well-known/jwks.json
+4. Fetch the signer's JWKS from {iss}/.well-known/jwks.json
 5. Find the key matching `kid` in the JWKS
 6. Verify the ES256 signature
 7. If valid → the bundle is authenticated as originating from `iss`
@@ -91,8 +91,9 @@ Verification requires no prior trust relationship — only access to the BIND Di
 ```js
 import { jwtVerify, createRemoteJWKSet } from "jose";
 
+// iss is the full issuer URL, e.g. "https://bindpki.org/egr"
 const JWKS = createRemoteJWKSet(
-  new URL(`https://bindpki.org/${iss}/.well-known/jwks.json`)
+  new URL(`${iss}/.well-known/jwks.json`)
 );
 
 const { payload } = await jwtVerify(jws, JWKS, {
@@ -116,10 +117,17 @@ const { payload } = await jwtVerify(jws, JWKS, {
 
 ## Key Discovery
 
-Signer public keys are published in the **BIND Directory** at [bindpki.org](https://bindpki.org):
+Signer public keys are published in the **BIND Directory** at [bindpki.org](https://bindpki.org). The `iss` claim is the signer's base URL in the directory:
 
 ```
-https://bindpki.org/{iss}/.well-known/jwks.json
+iss = https://bindpki.org/{slug}
+```
+
+The JWKS is discovered by appending `/.well-known/jwks.json`:
+
+```
+{iss}/.well-known/jwks.json
+→ https://bindpki.org/{slug}/.well-known/jwks.json
 ```
 
 The JWKS follows [RFC 7517](https://datatracker.ietf.org/doc/html/rfc7517) format. Keys use EC P-256 with optional lifecycle fields (`iat`, `nbf`, `exp`). The `kid` is an [RFC 7638](https://datatracker.ietf.org/doc/html/rfc7638) JWK Thumbprint (SHA-256, base64url).

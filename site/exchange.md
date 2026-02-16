@@ -85,14 +85,14 @@ The exchange server cannot see inside the JWE, so it cannot verify the inner JWS
 
 | Proof Payload Claim | Value |
 |----------------------|-------|
-| `iss` | `<issuer-id>` (same as the bundle JWS) |
+| `iss` | `<issuer-url>` (same as the bundle JWS, e.g. `https://bindpki.org/acme`) |
 | `sub` | `<base64url(SHA-256(JWE))>` — hash of the encrypted payload |
 | `iat` | `<timestamp>` |
 
 The server verifies this proof by:
 
 1. Extracting `iss` from the proof payload
-2. Fetching the JWKS from `https://bind-pki.org/{iss}/.well-known/jwks.json`
+2. Fetching the JWKS from `{iss}/.well-known/jwks.json`
 3. Verifying the ES256 signature against the issuer's published public key
 4. Confirming `sub` matches `SHA-256` of the submitted JWE (prevents proof replay)
 
@@ -101,7 +101,7 @@ The server verifies this proof by:
 Issuer public keys are published in the **[BIND Directory](/trust)** at [bindpki.org](https://bindpki.org):
 
 ```
-https://bindpki.org/{iss}/.well-known/jwks.json
+{iss}/.well-known/jwks.json
 ```
 
 See the [Trust Directory](/trust) for how participants register and manage their keys.
@@ -126,7 +126,7 @@ The exchange server applies different limits based on whether the sender provide
 
 Untrusted exchanges are **not rejected** — they are accepted with restricted limits. This allows anyone to use the exchange for small payloads (certificates, simple quotes) without needing to register as a trusted issuer.
 
-Trusted exchanges require the issuer to have registered their signing keys at the BIND Trust Gateway (`https://bind-pki.org`).
+Trusted exchanges require the issuer to have registered their signing keys in the [BIND Directory](https://bindpki.org).
 
 ## Link Payload
 
@@ -211,7 +211,7 @@ Content-Type: application/json
   "flag": "P",
   "passcode": "482910",
   "trusted": true,
-  "iss": "acme-insurance"
+  "iss": "https://bindpki.org/acme-insurance"
 }
 ```
 
@@ -298,7 +298,7 @@ BIND Exchange adapts the [SMART Health Links (SHL)](https://docs.smarthealthit.o
 | **Payload** | FHIR Bundles, SMART Health Cards | BIND Bundles |
 | **Domain** | Healthcare | Commercial insurance |
 | **Encryption** | JWE `dir` + `A256GCM` | JWE `dir` + `A256GCM` (same) |
-| **Signing** | JWS ES256, issuer-hosted JWKS | JWS ES256, BIND Trust Gateway JWKS (same pattern) |
+| **Signing** | JWS ES256, issuer-hosted JWKS | JWS ES256, [BIND Directory](/trust) JWKS |
 | **Access control** | Optional passcode (`P` flag) | Required passcode (`P` flag always set) |
 | **Trust model** | Verifier decides trust per issuer | Trust Gateway with tiered server limits |
 | **Manifest format** | `{ files: [{ contentType, embedded }] }` | `{ files: [{ contentType, embedded }] }` (same) |

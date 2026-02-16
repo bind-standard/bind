@@ -8,7 +8,7 @@ A broker can package a submission, encrypt it, and send a link to a carrier. A c
 
 Insurance workflows constantly require sharing structured data across organizational boundaries: submissions from broker to carrier, quotes from carrier to broker, certificates to third parties, policy packages to insureds. Today this happens via email attachments, portal logins, and proprietary integrations.
 
-BIND Exchange adapts the proven [SMART Health Links](https://docs.smarthealthit.org/smart-health-links/spec/) protocol — originally designed for sharing encrypted health records via links and QR codes — for the insurance domain. The core insight is the same: the encryption key travels in the link itself, never touching the server, so the exchange server is a zero-knowledge intermediary.
+BIND Exchange solves this with a simple, secure protocol: the encryption key travels in the link itself, never touching the server, so the exchange server is a zero-knowledge intermediary.
 
 ## Protocol Flow
 
@@ -286,19 +286,3 @@ A carrier packages their quote — proposed coverages, premiums, terms — as a 
 ### Policy document exchange
 
 After binding, the carrier shares the full policy package — policy, endorsements, certificates — as a BIND Bundle via exchange. The broker receives structured data they can feed directly into their management system.
-
-## Comparison with SMART Health Links
-
-BIND Exchange adapts the [SMART Health Links (SHL)](https://docs.smarthealthit.org/smart-health-links/spec/) protocol for insurance. The core architecture is identical — encrypted payloads, zero-knowledge server, key-in-link — with domain-specific adaptations:
-
-| Aspect | SMART Health Links | BIND Exchange |
-|--------|--------------------|---------------|
-| **URI scheme** | `shlink://` | `bindx://` |
-| **Content type** | `application/smart-health-card`, `application/fhir+json` | `application/bind+json` |
-| **Payload** | FHIR Bundles, SMART Health Cards | BIND Bundles |
-| **Domain** | Healthcare | Commercial insurance |
-| **Encryption** | JWE `dir` + `A256GCM` | JWE `dir` + `A256GCM` (same) |
-| **Signing** | JWS ES256, issuer-hosted JWKS | JWS ES256, [BIND Directory](/trust) JWKS |
-| **Access control** | Optional passcode (`P` flag) | Required passcode (`P` flag always set) |
-| **Trust model** | Verifier decides trust per issuer | Trust Gateway with tiered server limits |
-| **Manifest format** | `{ files: [{ contentType, embedded }] }` | `{ files: [{ contentType, embedded }] }` (same) |

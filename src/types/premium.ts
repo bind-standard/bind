@@ -63,7 +63,7 @@ export interface PremiumBasis {
 
   /**
    * Description of the rate basis (e.g., "per $100 of payroll", "per $1,000 of revenue").
-   * @terminology https://bind.codes/premium-base extensible
+   * @terminology https://bind.codes/PremiumBase extensible
    */
   rateBasis?: CodeableConcept;
 

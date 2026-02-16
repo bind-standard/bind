@@ -96,7 +96,7 @@ export interface Insured extends Resource {
 
   /**
    * Legal entity type.
-   * @terminology https://bind.codes/legal-entity extensible
+   * @terminology https://bind.codes/LegalEntity extensible
    */
   entityType?: CodeableConcept;
 
@@ -116,13 +116,13 @@ export interface Insured extends Resource {
 
   /**
    * Gender of the individual insured.
-   * @terminology https://bind.codes/gender extensible
+   * @terminology https://bind.codes/Gender extensible
    */
   gender?: "male" | "female" | "other" | "unknown";
 
   /**
    * Marital status of the individual insured.
-   * @terminology https://bind.codes/marital-status extensible
+   * @terminology https://bind.codes/MaritalStatus extensible
    */
   maritalStatus?: "single" | "married" | "divorced" | "widowed" | "domestic-partner";
 

@@ -33,7 +33,7 @@ export interface NamedDriver {
 
   /**
    * The driver's gender.
-   * @terminology https://bind.codes/gender extensible
+   * @terminology https://bind.codes/Gender extensible
    */
   gender?: "male" | "female" | "other" | "unknown";
 
@@ -45,7 +45,7 @@ export interface NamedDriver {
 
   /**
    * Current status of the driver's license.
-   * @terminology https://bind.codes/license-status extensible
+   * @terminology https://bind.codes/LicenseStatus extensible
    */
   licenseStatus?: "valid" | "suspended" | "revoked" | "expired" | "permit" | "unlicensed";
 
@@ -57,7 +57,7 @@ export interface NamedDriver {
 
   /**
    * How this driver is rated on the policy.
-   * @terminology https://bind.codes/driver-type extensible
+   * @terminology https://bind.codes/DriverType extensible
    */
   driverStatus: "rated" | "excluded" | "permitted" | "not-rated";
 
@@ -69,7 +69,7 @@ export interface NamedDriver {
 
   /**
    * Primary use of the vehicle by this driver.
-   * @terminology https://bind.codes/vehicle-use extensible
+   * @terminology https://bind.codes/VehicleUse extensible
    */
   primaryUse?: "commute" | "business" | "pleasure" | "farm";
 
@@ -109,7 +109,7 @@ export interface NamedDriver {
 export interface DrivingViolation {
   /**
    * Type of violation (speeding, DUI, at-fault-accident, etc.)
-   * @terminology https://bind.codes/driving-record-code extensible
+   * @terminology https://bind.codes/DrivingRecordCode extensible
    */
   type: CodeableConcept;
 

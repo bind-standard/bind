@@ -18,13 +18,13 @@ import type { CodeableConcept, Coding, Money, Period, Reference } from "./base";
 export interface InsuranceSpecialty {
   /**
    * Primary line of business (GL, Property, WC, Auto, etc.)
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   line: CodeableConcept;
 
   /**
    * Sub-line or coverage part (Products/Completed Ops, Premises, etc.)
-   * @terminology https://bind.codes/line-of-business-sub-code extensible
+   * @terminology https://bind.codes/LineOfBusinessSubCode extensible
    */
   subLine?: CodeableConcept;
 
@@ -61,7 +61,7 @@ export interface CarrierAppointment {
 
   /**
    * Lines of business authorized under this appointment.
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   linesOfBusiness?: CodeableConcept[];
 

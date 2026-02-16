@@ -38,7 +38,7 @@ export interface Coverage extends Resource {
 
   /**
    * Line of business for this coverage (GL, Property, WC, Auto, etc.)
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   lineOfBusiness: CodeableConcept;
 

@@ -72,7 +72,7 @@ export interface Organization extends Resource {
 
   /**
    * Lines of business this organization writes or handles.
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   linesOfBusiness?: CodeableConcept[];
 
@@ -96,7 +96,7 @@ export interface Organization extends Resource {
 
   /**
    * Business entity type (LLC, Corp, Mutual, Reciprocal, etc.)
-   * @terminology https://bind.codes/legal-entity extensible
+   * @terminology https://bind.codes/LegalEntity extensible
    */
   entityType?: CodeableConcept;
 
@@ -123,7 +123,7 @@ export interface Organization extends Resource {
     maxLimit?: Money;
     /**
      * Lines of business this organization can bind.
-     * @terminology https://bind.codes/line-of-business preferred
+     * @terminology https://bind.codes/LineOfBusiness preferred
      */
     linesOfBusiness?: CodeableConcept[];
   };

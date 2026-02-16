@@ -19,7 +19,7 @@ export interface QuestionResponse {
   answer: string;
   /** @format date */
   answeredDate?: string;
-  /** @terminology https://bind.codes/line-of-business preferred */
+  /** @terminology https://bind.codes/LineOfBusiness preferred */
   lineOfBusiness?: CodeableConcept;
   notes?: string;
 }

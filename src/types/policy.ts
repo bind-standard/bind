@@ -65,7 +65,7 @@ export interface Policy extends Resource {
 
   /**
    * Lines of business covered by this policy.
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   linesOfBusiness?: CodeableConcept[];
 
@@ -101,7 +101,7 @@ export interface Policy extends Resource {
 
   /**
    * Reason for cancellation, if applicable.
-   * @terminology https://bind.codes/cancellation-reason extensible
+   * @terminology https://bind.codes/CancellationReason extensible
    */
   cancellationReason?: CodeableConcept;
 
@@ -137,7 +137,7 @@ export interface Policy extends Resource {
 
   /**
    * Billing method for premium collection.
-   * @terminology https://bind.codes/billing-method extensible
+   * @terminology https://bind.codes/BillingMethod extensible
    */
   billingMethod?: "direct-bill" | "agency-bill" | "pay-as-you-go" | "premium-finance";
 

@@ -24,7 +24,7 @@ export interface Deductible {
 
   /**
    * How the deductible applies.
-   * @terminology https://bind.codes/deductible-type extensible
+   * @terminology https://bind.codes/DeductibleType extensible
    */
   type:
     | "per-occurrence"

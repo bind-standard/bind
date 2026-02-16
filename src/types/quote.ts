@@ -96,7 +96,7 @@ export interface Quote extends Resource {
 export interface PremiumLineItem {
   /**
    * Line of business this premium applies to.
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   lineOfBusiness: CodeableConcept;
 

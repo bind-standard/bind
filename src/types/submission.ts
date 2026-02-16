@@ -65,7 +65,7 @@ export interface Submission extends Resource {
 
   /**
    * Lines of business being requested (GL, Property, Auto, WC, etc.)
-   * @terminology https://bind.codes/line-of-business preferred
+   * @terminology https://bind.codes/LineOfBusiness preferred
    */
   linesOfBusiness?: CodeableConcept[];
 

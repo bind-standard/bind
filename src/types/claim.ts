@@ -61,7 +61,7 @@ export interface Claim extends Resource {
 
   /**
    * Type/cause of loss.
-   * @terminology https://bind.codes/loss-cause preferred
+   * @terminology https://bind.codes/CauseOfLoss preferred
    */
   lossType: CodeableConcept;
 
@@ -94,13 +94,13 @@ export interface Claim extends Resource {
 
   /**
    * Structured cause of loss.
-   * @terminology https://bind.codes/loss-cause preferred
+   * @terminology https://bind.codes/CauseOfLoss preferred
    */
   lossCause?: CodeableConcept;
 
   /**
    * High-level loss category (property, liability, medical, auto, workers-comp).
-   * @terminology https://bind.codes/loss-kind preferred
+   * @terminology https://bind.codes/LossKind preferred
    */
   lossKind?: CodeableConcept;
 
@@ -139,7 +139,7 @@ export interface Claimant {
 
   /**
    * Role of the claimant in the loss.
-   * @terminology https://bind.codes/claims-party-role extensible
+   * @terminology https://bind.codes/ClaimsPartyRole extensible
    */
   role: "insured" | "employee" | "third-party" | "injured-party" | "property-owner";
 
@@ -200,7 +200,7 @@ export interface ClaimPayment {
 
   /**
    * Type of payment.
-   * @terminology https://bind.codes/payment-type extensible
+   * @terminology https://bind.codes/PaymentType extensible
    */
   paymentType: "indemnity" | "expense" | "medical" | "legal" | "salvage";
 

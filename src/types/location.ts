@@ -52,13 +52,13 @@ export interface Location extends Resource {
 
   /**
    * Type of occupancy at this location.
-   * @terminology https://bind.codes/occupancy-type preferred
+   * @terminology https://bind.codes/OccupancyType preferred
    */
   occupancy?: CodeableConcept;
 
   /**
    * Construction type (frame, masonry, fire-resistive, etc.)
-   * @terminology https://bind.codes/construction-type preferred
+   * @terminology https://bind.codes/ConstructionType preferred
    */
   constructionType?: CodeableConcept;
 
@@ -145,7 +145,7 @@ export interface Location extends Resource {
 
   /**
    * Roof material type.
-   * @terminology https://bind.codes/roof-type preferred
+   * @terminology https://bind.codes/RoofType preferred
    */
   roofType?: CodeableConcept;
 
@@ -158,13 +158,13 @@ export interface Location extends Resource {
 
   /**
    * Roof shape (gable, hip, flat, mansard, gambrel).
-   * @terminology https://bind.codes/roof-geometry-type extensible
+   * @terminology https://bind.codes/RoofGeometryType extensible
    */
   roofShape?: CodeableConcept;
 
   /**
    * Plumbing material type (copper, PVC, PEX, galvanized, polybutylene).
-   * @terminology https://bind.codes/plumbing-type extensible
+   * @terminology https://bind.codes/PlumbingType extensible
    */
   plumbingType?: CodeableConcept;
 
@@ -177,7 +177,7 @@ export interface Location extends Resource {
 
   /**
    * Heating system type (forced-air, radiant, heat-pump, boiler, electric).
-   * @terminology https://bind.codes/heating-unit extensible
+   * @terminology https://bind.codes/HeatingUnit extensible
    */
   heatingType?: CodeableConcept;
 
@@ -190,7 +190,7 @@ export interface Location extends Resource {
 
   /**
    * Electrical system type (circuit-breaker, fuse-box + amperage).
-   * @terminology https://bind.codes/wiring-type extensible
+   * @terminology https://bind.codes/WiringType extensible
    */
   electricalType?: CodeableConcept;
 
@@ -203,7 +203,7 @@ export interface Location extends Resource {
 
   /**
    * Foundation type (slab, crawl-space, basement, piers, stilts).
-   * @terminology https://bind.codes/foundation extensible
+   * @terminology https://bind.codes/Foundation extensible
    */
   foundationType?: CodeableConcept;
 
@@ -256,13 +256,13 @@ export interface Location extends Resource {
 
   /**
    * Protection class (ISO fire protection rating).
-   * @terminology https://bind.codes/protection-class preferred
+   * @terminology https://bind.codes/FireProtection preferred
    */
   protectionClassCode?: CodeableConcept;
 
   /**
    * Overall physical condition of the property.
-   * @terminology https://bind.codes/structure-condition extensible
+   * @terminology https://bind.codes/StructureCondition extensible
    */
   propertyCondition?: "excellent" | "good" | "fair" | "poor";
 
@@ -271,7 +271,7 @@ export interface Location extends Resource {
 
   /**
    * Fire alarm classification.
-   * @terminology https://bind.codes/alarm-type preferred
+   * @terminology https://bind.codes/AlarmType preferred
    */
   alarmType?: CodeableConcept;
 

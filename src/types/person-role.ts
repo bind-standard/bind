@@ -38,13 +38,13 @@ export interface PersonRole extends Resource {
 
   /**
    * The role the person plays (underwriter, broker, producer, adjuster, actuary, etc.)
-   * @terminology https://bind.codes/producer-role preferred
+   * @terminology https://bind.codes/ProducerRole preferred
    */
   role: CodeableConcept;
 
   /**
    * Lines of business or areas of specialization.
-   * @terminology https://bind.codes/line-of-business extensible
+   * @terminology https://bind.codes/LineOfBusiness extensible
    */
   specialty?: CodeableConcept[];
 
@@ -62,7 +62,7 @@ export interface PersonRole extends Resource {
     maxLimit?: Money;
     /**
      * Lines of business this person can bind.
-     * @terminology https://bind.codes/line-of-business preferred
+     * @terminology https://bind.codes/LineOfBusiness preferred
      */
     linesOfBusiness?: CodeableConcept[];
     /** Geographic territories this person can bind */

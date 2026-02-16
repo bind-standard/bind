@@ -19,7 +19,7 @@ export interface LargeLoss {
   /** @format date */
   dateOfLoss: string;
   description: string;
-  /** @terminology https://bind.codes/cause-of-loss preferred */
+  /** @terminology https://bind.codes/CauseOfLoss preferred */
   lossType?: CodeableConcept;
   totalIncurred: Money;
   status?: "open" | "closed" | "reserved";
@@ -43,7 +43,7 @@ export interface LossHistory {
   period: Period;
   carrier?: Reference;
   policyNumber?: string;
-  /** @terminology https://bind.codes/line-of-business preferred */
+  /** @terminology https://bind.codes/LineOfBusiness preferred */
   lineOfBusiness?: CodeableConcept;
   totalClaims?: number;
   totalIncurred?: Money;
